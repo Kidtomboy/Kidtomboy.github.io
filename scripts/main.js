@@ -75,3 +75,11 @@ document.querySelectorAll('.project-card').forEach(card => {
         }
     });
 });
+
+// Hàm phát hiện thiết bị di động
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+if (isMobileDevice()) {
+    document.body.classList.add('mobile-view');
+}

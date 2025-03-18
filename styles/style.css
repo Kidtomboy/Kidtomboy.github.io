@@ -650,3 +650,39 @@ footer {
 .not-found-content .btn:hover {
     background-color: #1a5bbf;
 }
+
+/* Media Query cho điện thoại */
+@media (max-width: 600px) {
+    .intro {
+        display: none; 
+    }
+
+    .projects {
+        width: 100%;
+    }
+
+    .platform-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .quote-slider {
+        font-size: 14px; 
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+}
+
+/* CSS cho thiết bị di động */
+body.mobile-view {
+    font-size: 14px;
+}
+
+body.mobile-view .intro {
+    display: none; 
+}
+
+body.mobile-view .projects {
+    width: 100%; 
+}
