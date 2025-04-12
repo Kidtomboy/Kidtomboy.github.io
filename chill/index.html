@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chill Zone | Kidtomboy</title>
+    <link rel="stylesheet" href="../assets/css/chill.css">
+    <link rel="icon" href="../assets/data/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+</head>
+<body>
+    <div class="grid-pattern"></div>
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+    
+    <div class="container">
+        <header>
+            <a href="/home" class="logo">Kidtomboy</a>
+            <div class="header-right">
+                <div class="time-date">
+                    <div class="time" id="time">00:00:00</div>
+                    <div class="date" id="date">Thứ Hai, 1 tháng 1, 2023</div>
+                </div>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav class="menu" id="menu">
+                    <a href="/home"><i class="fas fa-home"></i> Trang Chủ</a>
+                    <a href="/search"><i class="fas fa-search"></i> Tìm Kiếm</a>
+                    <a href="/project"><i class="fas fa-project-diagram"></i> Dự Án</a>
+                    <a href="/support"><i class="fas fa-headset"></i> Hỗ Trợ</a>
+                    <a href="/about"><i class="fas fa-info-circle"></i> Về Tôi</a>
+                    <a href="/chill" class="active"><i class="fas fa-music"></i> Chill Zone</a>
+                </nav>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <h1 class="page-title floating"><i class="fas fa-music"></i> Chill Zone</h1>
+            
+            <div class="chill-container">
+                <!-- Phần nhạc -->
+                <section class="music-section">
+                    <h2><i class="fas fa-headphones"></i> Nhạc Chill</h2>
+                    <div class="music-player">
+                        <div class="player-controls">
+                            <button id="prev-btn" title="Bài trước"><i class="fas fa-step-backward"></i></button>
+                            <button id="backward-btn" title="Lùi 10 giây"><i class="fas fa-backward"></i></button>
+                            <button id="play-btn" title="Phát/Dừng"><i class="fas fa-play"></i></button>
+                            <button id="forward-btn" title="Tới 10 giây"><i class="fas fa-forward"></i></button>
+                            <button id="next-btn" title="Bài tiếp"><i class="fas fa-step-forward"></i></button>
+                        </div>
+                        <div class="secondary-controls">
+                            <button id="shuffle-btn" title="Ngẫu nhiên"><i class="fas fa-random"></i></button>
+                            <button id="repeat-btn" title="Lặp lại"><i class="fas fa-redo"></i></button>
+                            <div class="volume-control">
+                                <i class="fas fa-volume-up"></i>
+                                <input type="range" id="volume-slider" min="0" max="100" value="80">
+                            </div>
+                        </div>
+                        <div class="now-playing">
+                            <div class="song-info">
+                                <h3 id="song-title">Chưa chọn bài hát</h3>
+                                <p id="song-artist">Nghệ sĩ</p>
+                            </div>
+                            <div class="progress-container">
+                                <progress id="song-progress" value="0" max="100"></progress>
+                                <div class="time-display">
+                                    <span id="current-time">0:00</span>
+                                    <span id="total-time">0:00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="music-sources">
+                        <div class="source-tabs">
+                            <button class="tab-btn active" data-tab="local">Local Music</button>
+                            <button class="tab-btn" data-tab="youtube">YouTube</button>
+                            <button class="tab-btn" data-tab="soundcloud">SoundCloud</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="local-tab">
+                            <div class="playlist">
+                                <!-- Nhạc từ thư mục musics -->
+                                <div class="playlist-item" data-src="../assets/data/musics/nonstop/demo-song.mp3">
+                                    <i class="fas fa-music"></i>
+                                    <span>Demo Ký Sự Bay Vol 40</span>
+                                    <i class="fas fa-trash delete-song"></i>
+                                </div>
+                                <!-- Thêm các bài hát khác tại đây -->
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="youtube-tab">
+                            <div class="url-input">
+                                <input type="text" id="youtube-url" placeholder="Dán link YouTube tại đây...">
+                                <button id="add-youtube"><i class="fas fa-plus"></i> Thêm</button>
+                            </div>
+                            <div class="playlist" id="youtube-playlist">
+                                <!-- Các bài hát YouTube sẽ được thêm động ở đây -->
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="soundcloud-tab">
+                            <div class="url-input">
+                                <input type="text" id="soundcloud-url" placeholder="Dán link SoundCloud tại đây...">
+                                <button id="add-soundcloud"><i class="fas fa-plus"></i> Thêm</button>
+                            </div>
+                            <div class="playlist" id="soundcloud-playlist">
+                                <!-- Các bài hát SoundCloud sẽ được thêm động ở đây -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Phần To-Do List -->
+                <section class="todo-section">
+                    <h2><i class="fas fa-tasks"></i> Công việc của tôi</h2>
+                    <div class="todo-form">
+                        <input type="text" id="todo-input" placeholder="Thêm công việc mới...">
+                        <input type="time" id="todo-time" value="12:00">
+                        <button id="add-todo"><i class="fas fa-plus"></i> Thêm</button>
+                    </div>
+                    <div class="todo-filters">
+                        <button class="filter-btn active" data-filter="all">Tất cả</button>
+                        <button class="filter-btn" data-filter="pending">Chưa hoàn thành</button>
+                        <button class="filter-btn" data-filter="completed">Đã hoàn thành</button>
+                    </div>
+                    <div class="todo-list" id="todo-list">
+                        <!-- Các công việc sẽ được thêm động ở đây -->
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-container">
+                <div>© <span id="year">2025</span> Kidtomboy - Chill Zone</div>
+                <a href="/" class="home-link">
+                    <i class="fas fa-home"></i> Về trang chính
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../assets/js/chill.js"></script>
+</body>
+</html>
