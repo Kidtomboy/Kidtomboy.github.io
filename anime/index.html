@@ -6,7 +6,7 @@
     <title>Anime | Kidtomboy</title>
     <link rel="icon" href="../assets/data/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/anime.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="grid-pattern"></div>
@@ -30,7 +30,17 @@
                     <a href="/project"><i class="fas fa-project-diagram"></i> Dự Án</a>
                     <a href="/support"><i class="fas fa-headset"></i> Hồ Trợ</a>
                     <a href="/about"><i class="fas fa-info-circle"></i> Về Tôi</a>
-                    <a href="/chill" class="active"><i class="fas fa-music"></i> Chill Zone</a>
+                    <div class="dropdown">
+                        <button class="dropdown-btn">
+                            <i class="fas fa-ellipsis-h"></i> Thêm
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/anime"><i class="fas fa-book"></i> Xem Anime</a>
+                            <a href="/game"><i class="fas fa-gamepad"></i> Chơi Game</a>
+                            <a href="/music"><i class="fas fa-music"></i> Nghe Nhạc</a>
+                            <a href="/work"><i class="fas fa-briefcase"></i> Làm Việc</a>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -45,15 +55,12 @@
             
             <div class="anime-list" id="anime-list">
                 <!-- Anime sẽ được tải ở đây -->
-                <div class="loading-anime">
-                    <i class="fas fa-spinner fa-spin"></i> Đang tải danh sách anime...
-                </div>
             </div>
         </main>
         
         <footer>
             <div class="footer-container">
-                <div>© <span id="year">2025</span> Kidtomboy - Anime Collection</div>
+                <div>© <span id="year">2025</span> Kidtomboy - Danh sách anime</div>
                 <br><a href="/" class="home-link">
                     <i class="fas fa-home"></i> Về trang chính
                 </a>

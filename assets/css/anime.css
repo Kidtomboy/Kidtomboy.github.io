@@ -188,32 +188,39 @@ header::after {
     margin-bottom: 2rem;
     background: var(--card-bg);
     border-radius: 50px;
-    padding: 0.5rem 1rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.search-container:focus-within {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+    overflow: hidden;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    width: 100%;
 }
 
 #anime-search {
     flex: 1;
+    padding: 0.8rem 1.5rem;
     background: transparent;
     border: none;
     color: var(--text-color);
     font-size: 1rem;
-    padding: 0.5rem;
+}
+
+#anime-search:focus {
     outline: none;
 }
 
 #search-btn {
-    background: transparent;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
     border: none;
-    color: var(--text-color);
+    padding: 0 1.5rem;
     cursor: pointer;
-    padding: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+#search-btn:hover {
+    opacity: 0.9;
 }
 
 .anime-list {
@@ -222,15 +229,7 @@ header::after {
     gap: 1.5rem;
 }
 
-.loading-anime {
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.2rem;
-    color: var(--text-color);
-    opacity: 0.8;
-}
-
-.anime-item {
+.anime-card {
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
@@ -238,7 +237,7 @@ header::after {
     transition: all 0.3s ease;
 }
 
-.anime-item:hover {
+.anime-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     border-color: var(--primary-color);
@@ -247,14 +246,14 @@ header::after {
 .anime-header {
     padding: 1rem 1.5rem;
     background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
 }
 
 .anime-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -265,70 +264,48 @@ header::after {
     color: var(--primary-color);
 }
 
-.episode-count {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
 .episodes-list {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.anime-item.expanded .episodes-list {
-    max-height: 1000px;
-}
-
-.episode-item {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
     padding: 1rem 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.episode-card {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.episode-card:hover {
+    background: rgba(0, 200, 255, 0.1);
+    border-color: rgba(0, 200, 255, 0.3);
+}
+
+.episode-card a {
+    color: var(--text-color);
+    text-decoration: none;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
 }
 
-.episode-item:hover {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.episode-name {
-    font-weight: 500;
+.episode-number {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
 }
 
 .episode-link {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.episode-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
-}
-
-.episode-link.disabled {
-    background: var(--darker-bg);
-    color: var(--warning-color);
-    cursor: not-allowed;
-}
-
-.no-episodes {
-    padding: 1rem 1.5rem;
-    text-align: center;
-    opacity: 0.7;
-    font-style: italic;
-}
-
-.no-results {
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.2rem;
+    font-size: 0.85rem;
     opacity: 0.8;
+    word-break: break-all;
+}
+
+.no-link {
+    color: var(--warning-color);
+    font-style: italic;
 }
 
 /* Footer styles */
@@ -456,24 +433,8 @@ footer {
         font-size: 0.75rem;
     }
 
-    .anime-header {
-        padding: 0.75rem 1rem;
-    }
-
-    .anime-title {
-        font-size: 1rem;
-    }
-
-    .episode-item {
-        padding: 0.75rem 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .episode-link {
-        width: 100%;
-        text-align: center;
+    .episodes-list {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     }
 }
 
@@ -484,5 +445,95 @@ footer {
     
     .page-title {
         font-size: 2rem;
+    }
+    
+    .episodes-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .anime-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .platforms-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.8;
+    padding: 0.5rem 0;
+    font-size: inherit;
+}
+
+.dropdown-btn:hover {
+    opacity: 1;
+    color: var(--primary-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--menu-bg);
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0, 200, 255, 0.1);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .dropdown {
+        width: 100%;
+    }
+    
+    .dropdown-btn {
+        width: 100%;
+        justify-content: flex-start;
+        padding: 1rem;
+    }
+    
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        background: rgba(0,0,0,0.2);
+    }
+    
+    .dropdown.active .dropdown-content {
+        display: block;
     }
 }

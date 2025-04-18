@@ -1,4 +1,5 @@
-class AnimeViewer {
+// Anime Manager Class
+class AnimeManager {
     constructor() {
         this.animeData = [];
         this.filteredAnime = [];
@@ -6,7 +7,6 @@ class AnimeViewer {
     }
 
     async init() {
-        this.showLoading();
         await this.loadAnimeData();
         this.renderAnimeList();
         this.setupEventListeners();
@@ -15,215 +15,162 @@ class AnimeViewer {
         this.setupMenu();
     }
 
-    showLoading() {
-        const animeList = document.getElementById('anime-list');
-        animeList.innerHTML = `
-            <div class="loading-anime">
-                <i class="fas fa-spinner fa-spin"></i> Đang tải danh sách anime...
-            </div>
-        `;
-    }
-
     async loadAnimeData() {
         try {
-            // Đường dẫn đúng đến file CSV
             const response = await fetch('../assets/data/animes/anime.csv');
-            if (!response.ok) throw new Error('Không tải được file CSV');
-            
             const csvData = await response.text();
             this.parseCSV(csvData);
         } catch (error) {
             console.error('Error loading anime data:', error);
-            this.showError('Lỗi khi tải dữ liệu anime. Vui lòng thử lại sau.');
         }
     }
 
     parseCSV(csvData) {
-        const lines = csvData.split('\n').filter(line => line.trim() !== '');
-        if (lines.length < 2) {
-            this.showError('File CSV không có dữ liệu');
-            return;
-        }
-
-        // Bỏ header
-        lines.shift();
-
+        const lines = csvData.split('\n');
+        const headers = lines[0].split(',').map(h => h.trim());
+        
+        // Nhóm các tập phim theo tên anime
         const animeMap = new Map();
         
-        for (const line of lines) {
-            try {
-                const [name, episode, link] = this.parseCSVLine(line);
-                if (!name) continue;
-
-                const anime = {
-                    name: name.trim(),
-                    episode: episode?.trim() || '',
-                    link: link?.trim() || ''
-                };
-
-                if (!animeMap.has(anime.name)) {
-                    animeMap.set(anime.name, []);
-                }
-                animeMap.get(anime.name).push(anime);
-            } catch (e) {
-                console.error('Error parsing line:', line, e);
-            }
-        }
-
-        this.animeData = Array.from(animeMap.entries()).map(([name, episodes]) => ({
-            name,
-            episodes: episodes.sort((a, b) => {
-                const numA = parseInt(a.episode.match(/\d+/)?.[0] || 0);
-                const numB = parseInt(b.episode.match(/\d+/)?.[0] || 0);
-                return numB - numA; // Mới nhất lên đầu
-            })
-        }));
-
-        this.filteredAnime = [...this.animeData];
-    }
-
-    parseCSVLine(line) {
-        // Xử lý trường hợp có dấu phẩy trong trường dữ liệu
-        const result = [];
-        let inQuotes = false;
-        let currentField = '';
-        
-        for (let i = 0; i < line.length; i++) {
-            const char = line[i];
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
             
-            if (char === '"') {
-                inQuotes = !inQuotes;
-            } else if (char === ',' && !inQuotes) {
-                result.push(currentField);
-                currentField = '';
-            } else {
-                currentField += char;
+            const values = lines[i].split(',');
+            const anime = {};
+            
+            for (let j = 0; j < headers.length; j++) {
+                anime[headers[j]] = values[j] ? values[j].trim().replace(/^"|"$/g, '') : '';
             }
+            
+            if (!animeMap.has(anime.name)) {
+                animeMap.set(anime.name, {
+                    name: anime.name,
+                    episodes: []
+                });
+            }
+            
+            animeMap.get(anime.name).episodes.push({
+                episode: anime.episodes,
+                link: anime.link
+            });
         }
         
-        result.push(currentField);
-        return result;
-    }
-
-    isValidUrl(url) {
-        if (!url) return false;
-        try {
-            new URL(url);
-            return true;
-        } catch {
-            return false;
-        }
+        this.animeData = Array.from(animeMap.values());
+        this.filteredAnime = [...this.animeData];
+        
+        // Sắp xếp anime theo tên
+        this.animeData.sort((a, b) => a.name.localeCompare(b.name));
+        this.filteredAnime.sort((a, b) => a.name.localeCompare(b.name));
     }
 
     renderAnimeList() {
         const animeList = document.getElementById('anime-list');
+        animeList.innerHTML = '';
         
-        if (!this.filteredAnime.length) {
-            animeList.innerHTML = `
-                <div class="no-results">
-                    <i class="fas fa-search"></i> Không tìm thấy anime phù hợp
-                </div>
-            `;
+        if (this.filteredAnime.length === 0) {
+            animeList.innerHTML = '<div class="no-results">Không tìm thấy anime nào phù hợp</div>';
             return;
         }
         
-        animeList.innerHTML = this.filteredAnime.map(anime => `
-            <div class="anime-item">
-                <div class="anime-header">
-                    <div class="anime-title">
-                        <i class="fas fa-film"></i> ${anime.name}
-                    </div>
-                    <div class="episode-count">
-                        ${anime.episodes.length} ${anime.episodes.length === 1 ? 'tập' : 'tập'}
-                    </div>
+        this.filteredAnime.forEach(anime => {
+            const animeCard = document.createElement('div');
+            animeCard.className = 'anime-card';
+            
+            const animeHeader = document.createElement('div');
+            animeHeader.className = 'anime-header';
+            animeHeader.innerHTML = `
+                <div class="anime-title">
+                    <i class="fas fa-film"></i>
+                    ${anime.name}
                 </div>
-                <div class="episodes-list">
-                    ${anime.episodes.map(ep => `
-                        <div class="episode-item">
-                            <div class="episode-info">
-                                <span class="episode-name">Tập ${ep.episode}</span>
-                                ${this.renderLink(ep.link)}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-        `).join('');
-        
-        // Thêm sự kiện click để mở rộng thu gọn
-        document.querySelectorAll('.anime-header').forEach(header => {
-            header.addEventListener('click', () => {
-                header.parentElement.classList.toggle('expanded');
+                <div class="episode-count">${anime.episodes.length} tập</div>
+            `;
+            
+            const episodesList = document.createElement('div');
+            episodesList.className = 'episodes-list';
+            
+            // Sắp xếp các tập theo số tập (tách số từ chuỗi)
+            anime.episodes.sort((a, b) => {
+                const numA = parseInt(a.episode.match(/\d+/)?.[0] || '0');
+                const numB = parseInt(b.episode.match(/\d+/)?.[0] || '0');
+                return numB - numB; // Sắp xếp từ tập mới nhất
             });
+            
+            anime.episodes.forEach(ep => {
+                const episodeCard = document.createElement('div');
+                episodeCard.className = 'episode-card';
+                
+                if (ep.link && !ep.link.includes('Không tìm thấy')) {
+                    episodeCard.innerHTML = `
+                        <a href="${ep.link}" target="_blank" rel="noopener noreferrer">
+                            <span class="episode-number">Tập ${ep.episode}</span>
+                            <span class="episode-link">Xem ngay <i class="fas fa-external-link-alt"></i></span>
+                        </a>
+                    `;
+                } else {
+                    episodeCard.innerHTML = `
+                        <div>
+                            <span class="episode-number">Tập ${ep.episode}</span>
+                            <span class="no-link">(Chưa có link)</span>
+                        </div>
+                    `;
+                }
+                
+                episodesList.appendChild(episodeCard);
+            });
+            
+            animeCard.appendChild(animeHeader);
+            animeCard.appendChild(episodesList);
+            animeList.appendChild(animeCard);
         });
-    }
-
-    renderLink(link) {
-        if (this.isValidUrl(link)) {
-            return `
-                <a href="${link}" target="_blank" class="episode-link" onclick="event.stopPropagation()">
-                    <i class="fas fa-play"></i> Xem ngay
-                </a>
-            `;
-        } else {
-            const message = link.includes('Không tìm thấy') ? link : 'Chưa có link';
-            return `
-                <span class="episode-link disabled">
-                    <i class="fas fa-clock"></i> ${message}
-                </span>
-            `;
-        }
     }
 
     filterAnime(searchTerm) {
-        const term = searchTerm?.toLowerCase() || '';
-        this.filteredAnime = this.animeData.filter(anime => 
-            anime.name.toLowerCase().includes(term) ||
-            anime.episodes.some(ep => 
-                ep.episode.toLowerCase().includes(term)
-            )
-        );
+        if (!searchTerm) {
+            this.filteredAnime = [...this.animeData];
+        } else {
+            const term = searchTerm.toLowerCase();
+            this.filteredAnime = this.animeData.filter(anime => 
+                anime.name.toLowerCase().includes(term) ||
+                anime.episodes.some(ep => ep.episode.toLowerCase().includes(term))
+        }
+        
         this.renderAnimeList();
     }
 
-    showError(message) {
-        const animeList = document.getElementById('anime-list');
-        animeList.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-exclamation-triangle"></i> ${message}
-            </div>
-        `;
-    }
-
     setupEventListeners() {
-        // Tìm kiếm khi nhập
-        document.getElementById('anime-search').addEventListener('input', (e) => {
-            this.filterAnime(e.target.value);
-        });
-        
-        // Tìm kiếm khi nhấn nút
+        // Tìm kiếm anime
         document.getElementById('search-btn').addEventListener('click', () => {
-            const searchInput = document.getElementById('anime-search');
-            this.filterAnime(searchInput.value);
+            const searchTerm = document.getElementById('anime-search').value;
+            this.filterAnime(searchTerm);
         });
         
-        // Tìm kiếm khi nhấn Enter
-        document.getElementById('anime-search').addEventListener('keypress', (e) => {
+        document.getElementById('anime-search').addEventListener('keyup', (e) => {
             if (e.key === 'Enter') {
-                this.filterAnime(e.target.value);
+                const searchTerm = document.getElementById('anime-search').value;
+                this.filterAnime(searchTerm);
             }
         });
     }
 
     updateTime() {
         const now = new Date();
-        document.getElementById('time').textContent = now.toLocaleTimeString('vi-VN');
-        document.getElementById('date').textContent = now.toLocaleDateString('vi-VN', {
+        const timeElement = document.getElementById('time');
+        const dateElement = document.getElementById('date');
+        
+        timeElement.textContent = now.toLocaleTimeString('vi-VN', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        
+        dateElement.textContent = now.toLocaleDateString('vi-VN', {
             weekday: 'long',
             day: 'numeric',
             month: 'numeric',
             year: 'numeric'
         });
+        
         document.getElementById('year').textContent = now.getFullYear();
     }
 
@@ -246,7 +193,7 @@ class AnimeViewer {
     }
 }
 
-// Khởi tạo khi trang tải xong
+// Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
-    new AnimeViewer();
+    new AnimeManager();
 });
