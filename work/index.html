@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Việc | Kidtomboy</title>
+    <link rel="icon" href="../assets/data/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/work.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde@2.20.0/dist/easymde.min.js">
+</head>
+<body>
+    <div class="grid-pattern"></div>
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+    
+    <div class="container">
+        <header>
+            <a href="/home" class="logo">Kidtomboy</a>
+            <div class="header-right">
+                <div class="time-date">
+                    <div class="time" id="time">00:00:00</div>
+                    <div class="date" id="date">Thứ Hai, 1 tháng 1, 2025</div>
+                </div>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav class="menu" id="menu">
+                    <a href="/home"><i class="fas fa-home"></i> Trang Chủ</a>
+                    <a href="/search"><i class="fas fa-search"></i> Tìm Kiếm</a>
+                    <a href="/project"><i class="fas fa-project-diagram"></i> Dự Án</a>
+                    <a href="/support"><i class="fas fa-headset"></i> Hồ Trợ</a>
+                    <a href="/about"><i class="fas fa-info-circle"></i> Về Tôi</a>
+                    <div class="dropdown">
+                        <button class="dropdown-btn">
+                            <i class="fas fa-ellipsis-h"></i> Thêm
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/music"><i class="fas fa-music"></i> Music</a>
+                            <a href="/work"><i class="fas fa-briefcase"></i> Work</a>
+                            <a href="/study"><i class="fas fa-book"></i> Study</a>
+                            <a href="/games"><i class="fas fa-gamepad"></i> Games</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <h1 class="page-title floating"><i class="fas fa-tasks"></i> Công Việc</h1>
+            
+            <div class="work-container">
+                <div class="tasks-section">
+                    <div class="tasks-header">
+                        <h2><i class="fas fa-list-check"></i> Danh sách công việc</h2>
+                        <button id="add-task" class="btn-add">
+                            <i class="fas fa-plus"></i> Thêm mới
+                        </button>
+                    </div>
+                    
+                    <div class="task-filters">
+                        <button class="filter-btn active" data-filter="all">Tất cả</button>
+                        <button class="filter-btn" data-filter="completed">Hoàn thành</button>
+                        <button class="filter-btn" data-filter="pending">Chưa hoàn thành</button>
+                    </div>
+                    
+                    <div class="task-input-container">
+                        <input type="text" id="new-task-input" placeholder="Nhập công việc mới...">
+                        <input type="datetime-local" id="new-task-due">
+                        <button id="save-task" class="btn-save">
+                            <i class="fas fa-save"></i> Lưu
+                        </button>
+                    </div>
+                    
+                    <div class="tasks-list" id="tasks-list">
+                        <!-- Tasks will be added here dynamically -->
+                    </div>
+                </div>
+                
+                <div class="notes-section">
+                    <div class="notes-header">
+                        <h2><i class="fas fa-file-lines"></i> Ghi chú</h2>
+                        <button id="save-note" class="btn-save">
+                            <i class="fas fa-save"></i> Lưu
+                        </button>
+                    </div>
+                    <textarea id="task-notes" placeholder="Chọn một công việc để thêm ghi chú..."></textarea>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-container">
+                <div>© <span id="year">2025</span> Kidtomboy - Quản lý công việc</div>
+                <br><a href="/" class="home-link">
+                    <i class="fas fa-home"></i> Về trang chính
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <script src="../assets/js/work.js"></script>
+</body>
+</html>

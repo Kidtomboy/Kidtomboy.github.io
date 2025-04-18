@@ -494,135 +494,6 @@ progress::-webkit-progress-value {
     border-left: 3px solid var(--primary-color);
 }
 
-/* ===== TO-DO LIST ===== */
-.todo-form {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.todo-form input {
-    padding: 0.8rem;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    color: var(--text-color);
-    font-size: 0.9rem;
-}
-
-.todo-form input[type="text"] {
-    flex: 1;
-}
-
-.todo-form input[type="time"] {
-    width: 100px;
-}
-
-.todo-form button {
-    padding: 0 1rem;
-    background: var(--primary-color);
-    border: none;
-    border-radius: 6px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.todo-form button:hover {
-    background: rgba(0, 200, 255, 0.8);
-}
-
-.todo-filters {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.todo-filters button {
-    padding: 0.4rem 0.8rem;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    color: var(--text-color);
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.todo-filters button.active {
-    background: var(--primary-color);
-    color: white;
-}
-
-.todo-list {
-    max-height: 300px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.1);
-}
-
-.todo-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.todo-list::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-}
-
-.todo-list::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
-    border-radius: 3px;
-}
-
-.todo-item {
-    display: flex;
-    align-items: center;
-    padding: 0.8rem;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-    transition: all 0.3s;
-}
-
-.todo-item:hover {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.todo-item input[type="checkbox"] {
-    margin-right: 0.8rem;
-    cursor: pointer;
-}
-
-.todo-item .todo-text {
-    flex: 1;
-    font-size: 0.9rem;
-}
-
-.todo-item .todo-time {
-    font-size: 0.8rem;
-    opacity: 0.7;
-    margin-left: 0.5rem;
-}
-
-.todo-item.completed .todo-text,
-.todo-item.completed .todo-time {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-.todo-item .delete-todo {
-    color: var(--error-color);
-    cursor: pointer;
-    margin-left: 0.5rem;
-    opacity: 0;
-    transition: all 0.2s;
-}
-
-.todo-item:hover .delete-todo {
-    opacity: 1;
-}
-
 /* ===== FOOTER ===== */
 footer {
     margin-top: 2rem;
@@ -809,14 +680,6 @@ footer {
         width: 100%;
         justify-content: center;
     }
-
-    .todo-form {
-        flex-wrap: wrap;
-    }
-
-    .todo-form input[type="time"] {
-        width: 100%;
-    }
 }
 
 @media (max-width: 480px) {
@@ -849,4 +712,42 @@ footer {
         flex-direction: column;
         gap: 0.5rem;
     }
+}
+
+/* Thêm phần CSS mới */
+.add-local-music {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.add-local-btn {
+    padding: 0.8rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.add-local-btn:hover {
+    background: rgba(0, 200, 255, 0.8);
+}
+
+#local-file-input {
+    display: none;
+}
+
+/* Điều chỉnh lại grid layout */
+.chill-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
 }

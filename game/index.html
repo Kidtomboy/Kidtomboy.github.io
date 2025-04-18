@@ -2,10 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giới Thiệu | Kidtomboy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Game Giải Trí | Kidtomboy</title>
     <link rel="icon" href="../assets/data/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../assets/css/about.css">
+    <link rel="stylesheet" href="../assets/css/game.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
@@ -36,28 +36,30 @@
         </header>
         
         <main class="main-content">
-            <h1 class="page-title floating"><i class="fas fa-info-circle"></i> Giới Thiệu</h1>
+            <h1 class="page-title floating"><i class="fas fa-gamepad"></i> Game Giải Trí</h1>
             
-            <div class="about-content">
-                <div class="profile-section">
-                    <div class="profile-image"></div>
-                    <h2>Kidtomboy</h2>
-                    <p class="profile-title">Nhà phát triển web</p>
+            <div class="games-container">
+                <div class="game-categories">
+                    <button class="category-btn active" data-category="all">Tất cả</button>
+                    <button class="category-btn" data-category="puzzle">Đố vui</button>
+                    <button class="category-btn" data-category="action">Hành động</button>
+                    <button class="category-btn" data-category="classic">Cổ điển</button>
                 </div>
                 
-                <div class="bio-section">
-                    <h3>Về tôi</h3>
-                    <p>Xin chào! Tôi là một nhà phát triển với niềm đam mê tạo ra những trải nghiệm người dùng tuyệt vời.</p>
-                    
-                    <h3>Kỹ năng</h3>
-                    <div class="skills">
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">C</span>
-                        <span class="skill-tag">Shell</span>
-                        <span class="skill-tag">PHP</span>
+                <div class="games-grid" id="games-grid">
+                    <!-- Games will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Game Modals -->
+            <div id="game-modal" class="game-modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2 id="modal-title">Tên Game</h2>
+                    <div id="game-container"></div>
+                    <div class="game-controls">
+                        <button id="restart-game" class="game-btn"><i class="fas fa-redo"></i> Chơi lại</button>
+                        <button id="close-game" class="game-btn"><i class="fas fa-times"></i> Thoát</button>
                     </div>
                 </div>
             </div>
@@ -65,14 +67,14 @@
         
         <footer>
             <div class="footer-container">
-                <div>© <span id="year">2025</span> Kidtomboy - Trang giới thiệu</div>
-                <a href="/" class="home-link">
+                <div>© <span id="year">2025</span> Kidtomboy - Game Giải Trí</div>
+                <br><a href="/" class="home-link">
                     <i class="fas fa-home"></i> Về trang chính
                 </a>
             </div>
         </footer>
     </div>
 
-    <script src="../assets/js/about.js"></script>
+    <script src="../assets/js/game.js"></script>
 </body>
 </html>

@@ -8,8 +8,12 @@
     --card-bg: rgba(30, 30, 40, 0.6);
     --nav-bg: rgba(20, 20, 30, 0.8);
     --menu-bg: rgba(15, 15, 25, 0.95);
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    --danger-color: #f44336;
 }
 
+/* Core styles */
 * {
     margin: 0;
     padding: 0;
@@ -39,6 +43,7 @@ body {
     flex-direction: column;
 }
 
+/* Header styles */
 header {
     display: flex;
     justify-content: space-between;
@@ -104,6 +109,7 @@ header::after {
     opacity: 0.8;
 }
 
+/* Menu styles */
 .menu-toggle {
     display: none;
     font-size: 1.5rem;
@@ -155,13 +161,11 @@ header::after {
     font-size: 0.9rem;
 }
 
+/* Main content styles */
 .main-content {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
     padding: 1rem 0;
 }
 
@@ -179,6 +183,155 @@ header::after {
     gap: 1rem;
 }
 
+.search-container {
+    display: flex;
+    margin-bottom: 2rem;
+    background: var(--card-bg);
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+}
+
+#anime-search {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1rem;
+    padding: 0.5rem;
+    outline: none;
+}
+
+#search-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0 0.5rem;
+}
+
+.anime-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.loading-anime {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.anime-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.anime-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
+}
+
+.anime-header {
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.anime-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.anime-title i {
+    color: var(--primary-color);
+}
+
+.episode-count {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.episodes-list {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.anime-item.expanded .episodes-list {
+    max-height: 1000px;
+}
+
+.episode-item {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.episode-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.episode-name {
+    font-weight: 500;
+}
+
+.episode-link {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.episode-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
+}
+
+.episode-link.disabled {
+    background: var(--darker-bg);
+    color: var(--warning-color);
+    cursor: not-allowed;
+}
+
+.no-episodes {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* Footer styles */
 footer {
     text-align: center;
     padding: 1.5rem;
@@ -187,7 +340,7 @@ footer {
     margin-top: auto;
 }
 
-/* ===== DECORATION ===== */
+/* Decoration styles */
 .decorative-circle {
     position: fixed;
     border-radius: 50%;
@@ -235,26 +388,7 @@ footer {
     animation: float 6s ease-in-out infinite;
 }
 
-/* ===== MOBILE MENU ===== */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 98;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.menu-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
-/* ===== MOBILE RESPONSIVE ===== */
+/* Mobile responsive styles */
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
@@ -322,9 +456,24 @@ footer {
         font-size: 0.75rem;
     }
 
-    .quick-links {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+    .anime-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .anime-title {
+        font-size: 1rem;
+    }
+
+    .episode-item {
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .episode-link {
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -332,162 +481,8 @@ footer {
     .menu {
         width: 85%;
     }
-
-    .quick-links {
-        grid-template-columns: 1fr;
-    }
-
-    .search-box {
-        padding: 0.9rem 1.2rem;
-        font-size: 1rem;
-    }
-}
-
-.error-container {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.error-code {
-    font-size: 5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    line-height: 1;
-    margin-bottom: 1rem;
-}
-
-.error-title {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-}
-
-.error-title i {
-    color: var(--accent-color);
-}
-
-.error-message {
-    opacity: 0.8;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.error-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.action-button {
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.action-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 200, 255, 0.3);
-}
-
-.action-button.secondary {
-    background: var(--card-bg);
-    color: var(--text-color);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.action-button.secondary:hover {
-    background: rgba(0, 200, 255, 0.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* ===== FOOTER ===== */
-footer {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    opacity: 0.6;
-}
-
-.home-link {
-    color: var(--text-color);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s;
-}
-
-.home-link:hover {
-    color: var(--primary-color);
-}
-
-
-/* Responsive */
-@media (max-width: 768px) {
-    .error-code {
-        font-size: 4rem;
-    }
     
-    .error-title {
-        font-size: 1.5rem;
+    .page-title {
+        font-size: 2rem;
     }
-    
-    .error-actions {
-        flex-direction: column;
-    }
-    
-    .action-button {
-        justify-content: center;
-    }
-}
-
-/* Thêm vào phần core styles hoặc đầu mỗi file CSS */
-.page-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--text-color); /* Màu chữ trắng */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.page-title i {
-    color: var(--primary-color); /* Icon màu xanh */
-    font-size: 2.2rem;
-}
-
-/* Thêm hiệu ứng cho emoji */
-.page-title .emoji {
-    font-size: 2rem;
-    margin-right: 0.5rem;
 }
