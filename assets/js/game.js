@@ -1688,390 +1688,192 @@ class DinoGame {
 class Game2048 {
     constructor(container) {
         this.container = container;
-        this.boardSize = 4; // Bảng 4x4
-        this.cellSize = window.innerWidth < 768 ? 60 : 80; // Kích thước các ô vuông
-        this.board = document.createElement('div');
-        this.board.className = 'game-2048-board';
-        this.container.appendChild(this.board);
+        this.container.innerHTML = '';
         
-        // Khởi tạo trạng thái game
-        this.grid = Array(this.boardSize).fill().map(() => Array(this.boardSize).fill(0));
+        // Tạo giao diện game
+        this.createGameUI();
+        
+        // Khởi tạo game
+        this.initGame();
+        
+        // Thiết lập điều khiển
+        this.setupControls();
+    }
+    
+    createGameUI() {
+        // Tạo header chứa điểm số
+        this.header = document.createElement('div');
+        this.header.className = 'game-2048-header';
+        
+        this.scoreContainer = document.createElement('div');
+        this.scoreContainer.className = 'score-container';
+        
+        this.scoreElement = document.createElement('div');
+        this.scoreElement.className = 'score';
+        this.scoreElement.innerHTML = `
+            <div class="score-title">ĐIỂM</div>
+            <div class="score-value">0</div>
+        `;
+        
+        this.bestScoreElement = document.createElement('div');
+        this.bestScoreElement.className = 'score best-score';
+        this.bestScoreElement.innerHTML = `
+            <div class="score-title">CAO NHẤT</div>
+            <div class="score-value">${localStorage.getItem('2048-best-score') || 0}</div>
+        `;
+        
+        this.scoreContainer.appendChild(this.scoreElement);
+        this.scoreContainer.appendChild(this.bestScoreElement);
+        this.header.appendChild(this.scoreContainer);
+        
+        // Nút chơi lại
+        this.restartBtn = document.createElement('button');
+        this.restartBtn.className = 'game-2048-restart';
+        this.restartBtn.innerHTML = '<i class="fas fa-redo"></i>';
+        this.restartBtn.addEventListener('click', () => this.restart());
+        this.header.appendChild(this.restartBtn);
+        
+        this.container.appendChild(this.header);
+        
+        // Tạo grid
+        this.gridElement = document.createElement('div');
+        this.gridElement.className = 'game-2048-grid';
+        this.container.appendChild(this.gridElement);
+        
+        // Thông báo game over hoặc chiến thắng
+        this.messageElement = document.createElement('div');
+        this.messageElement.className = 'game-2048-message hidden';
+        this.container.appendChild(this.messageElement);
+    }
+    
+    initGame() {
+        this.grid = Array(4).fill().map(() => Array(4).fill(0));
         this.score = 0;
         this.gameOver = false;
         this.won = false;
         this.keepPlaying = false;
         
-        // Thiết lập giao diện
-        this.setupBoard();
-        this.setupControls();
+        // Thêm 2 ô số ban đầu
+        this.addRandomTile();
+        this.addRandomTile();
         
-        // Bắt đầu game
-        this.addRandomTile();
-        this.addRandomTile();
+        // Cập nhật giao diện
         this.updateView();
     }
-
-    setupBoard() {
-        this.board.innerHTML = '';
-        this.board.style.width = `${this.cellSize * this.boardSize}px`;
-        this.board.style.height = `${this.cellSize * this.boardSize}px`;
-        
-        // Thêm wrapper cho controls trên điện thoại
-        if (window.innerWidth < 768) {
-            const controlsWrapper = document.createElement('div');
-            controlsWrapper.className = 'game-2048-controls';
-            this.container.appendChild(controlsWrapper);
-            
-            // Di chuyển score và button vào wrapper
-            this.scoreDisplay = document.createElement('div');
-            this.scoreDisplay.className = 'game-2048-score';
-            this.scoreDisplay.innerHTML = `
-                <div class="score-title">ĐIỂM</div>
-                <div class="score-value">0</div>
-            `;
-            controlsWrapper.appendChild(this.scoreDisplay);
-            
-            this.restartBtn = document.createElement('button');
-            this.restartBtn.className = 'game-2048-restart';
-            this.restartBtn.innerHTML = '<i class="fas fa-redo"></i> Chơi lại';
-            this.restartBtn.addEventListener('click', () => this.restart());
-            controlsWrapper.appendChild(this.restartBtn);
-        } else {
-            // Layout desktop giữ nguyên
-            this.scoreDisplay = document.createElement('div');
-            this.scoreDisplay.className = 'game-2048-score';
-            this.scoreDisplay.innerHTML = `
-                <div class="score-title">ĐIỂM</div>
-                <div class="score-value">0</div>
-            `;
-            this.container.appendChild(this.scoreDisplay);
-            
-            this.restartBtn = document.createElement('button');
-            this.restartBtn.className = 'game-2048-restart';
-            this.restartBtn.innerHTML = '<i class="fas fa-redo"></i> Chơi lại';
-            this.restartBtn.addEventListener('click', () => this.restart());
-            this.container.appendChild(this.restartBtn);
-        }
-        
-        // Tạo các ô lưới
-        for (let i = 0; i < this.boardSize; i++) {
-            for (let j = 0; j < this.boardSize; j++) {
-                const cell = document.createElement('div');
-                cell.className = 'game-2048-cell';
-                cell.style.width = `${this.cellSize - 10}px`;
-                cell.style.height = `${this.cellSize - 10}px`;
-                cell.style.top = `${i * this.cellSize + 5}px`;
-                cell.style.left = `${j * this.cellSize + 5}px`;
-                this.board.appendChild(cell);
-            }
-        }
-        
-        // Thêm phần hiển thị điểm
-        this.scoreDisplay = document.createElement('div');
-        this.scoreDisplay.className = 'game-2048-score';
-        this.scoreDisplay.innerHTML = `
-            <div class="score-title">ĐIỂM</div>
-            <div class="score-value">0</div>
-        `;
-        this.container.appendChild(this.scoreDisplay);
-        
-        // Thêm nút chơi lại
-        this.restartBtn = document.createElement('button');
-        this.restartBtn.className = 'game-2048-restart';
-        this.restartBtn.innerHTML = '<i class="fas fa-redo"></i> Chơi lại';
-        this.restartBtn.addEventListener('click', () => this.restart());
-        this.container.appendChild(this.restartBtn);
-    }
-
-    setupControls() {
-        // Điều khiển bằng bàn phím
-        document.addEventListener('keydown', (e) => {
-            if (this.gameOver && !this.keepPlaying) return;
-            
-            let moved = false;
-            switch(e.key) {
-                case 'ArrowUp':
-                    moved = this.moveTiles('up');
-                    break;
-                case 'ArrowDown':
-                    moved = this.moveTiles('down');
-                    break;
-                case 'ArrowLeft':
-                    moved = this.moveTiles('left');
-                    break;
-                case 'ArrowRight':
-                    moved = this.moveTiles('right');
-                    break;
-            }
-            
-            if (moved) {
-                this.addRandomTile();
-                this.updateView();
-                
-                if (!this.won && this.checkWin()) {
-                    this.won = true;
-                    this.showMessage('Bạn đã đạt 2048!', 'Tiếp tục chơi?');
-                }
-                
-                if (this.checkGameOver()) {
-                    this.gameOver = true;
-                    this.showMessage('Game Over!', 'Chơi lại?');
-                }
-            }
-        });
-        
-        // Điều khiển cảm ứng cho điện thoại
-        let touchStartX = 0;
-        let touchStartY = 0;
-        
-        this.board.addEventListener('touchstart', (e) => {
-            if (this.gameOver && !this.keepPlaying) return;
-            
-            touchStartX = e.touches[0].clientX;
-            touchStartY = e.touches[0].clientY;
-        }, {passive: true});
-        
-        this.board.addEventListener('touchend', (e) => {
-            if (this.gameOver && !this.keepPlaying) return;
-            if (!touchStartX || !touchStartY) return;
-            
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-            
-            const diffX = touchEndX - touchStartX;
-            const diffY = touchEndY - touchStartY;
-            
-            let moved = false;
-            
-            // Xác định hướng vuốt
-            if (Math.abs(diffX) > Math.abs(diffY)) {
-                // Vuốt ngang
-                if (diffX > 50) {
-                    moved = this.moveTiles('right');
-                } else if (diffX < -50) {
-                    moved = this.moveTiles('left');
-                }
-            } else {
-                // Vuốt dọc
-                if (diffY > 50) {
-                    moved = this.moveTiles('down');
-                } else if (diffY < -50) {
-                    moved = this.moveTiles('up');
-                }
-            }
-            
-            if (moved) {
-                this.addRandomTile();
-                this.updateView();
-                
-                if (!this.won && this.checkWin()) {
-                    this.won = true;
-                    this.showMessage('Bạn đã đạt 2048!', 'Tiếp tục chơi?');
-                }
-                
-                if (this.checkGameOver()) {
-                    this.gameOver = true;
-                    this.showMessage('Game Over!', 'Chơi lại?');
-                }
-            }
-            
-            touchStartX = 0;
-            touchStartY = 0;
-        }, {passive: false});
-    }
-
+    
     addRandomTile() {
-        const emptyCells = [];
+        if (this.isGridFull()) return;
+        
+        let value = Math.random() < 0.9 ? 2 : 4;
+        let emptyCells = [];
         
         // Tìm tất cả ô trống
-        for (let i = 0; i < this.boardSize; i++) {
-            for (let j = 0; j < this.boardSize; j++) {
-                if (this.grid[i][j] === 0) {
-                    emptyCells.push({i, j});
+        for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (this.grid[row][col] === 0) {
+                    emptyCells.push({ row, col });
                 }
             }
         }
         
-        if (emptyCells.length > 0) {
-            // Chọn ngẫu nhiên một ô trống
-            const {i, j} = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-            // 90% là số 2, 10% là số 4
-            this.grid[i][j] = Math.random() < 0.9 ? 2 : 4;
-        }
+        // Chọn ngẫu nhiên 1 ô trống
+        const { row, col } = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        this.grid[row][col] = value;
     }
-
-    moveTiles(direction) {
-        let moved = false;
-        const oldGrid = this.grid.map(row => [...row]);
-        
-        // Xử lý di chuyển theo hướng
-        switch(direction) {
-            case 'up':
-                for (let j = 0; j < this.boardSize; j++) {
-                    for (let i = 1; i < this.boardSize; i++) {
-                        if (this.grid[i][j] !== 0) {
-                            let newRow = i;
-                            while (newRow > 0 && this.grid[newRow-1][j] === 0) {
-                                newRow--;
-                            }
-                            
-                            if (newRow > 0 && this.grid[newRow-1][j] === this.grid[i][j]) {
-                                // Ghép ô
-                                this.grid[newRow-1][j] *= 2;
-                                this.grid[i][j] = 0;
-                                this.score += this.grid[newRow-1][j];
-                                moved = true;
-                            } else if (newRow !== i) {
-                                // Di chuyển ô
-                                this.grid[newRow][j] = this.grid[i][j];
-                                this.grid[i][j] = 0;
-                                moved = true;
-                            }
-                        }
-                    }
+    
+    isGridFull() {
+        for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (this.grid[row][col] === 0) {
+                    return false;
                 }
-                break;
-                
-            case 'down':
-                for (let j = 0; j < this.boardSize; j++) {
-                    for (let i = this.boardSize - 2; i >= 0; i--) {
-                        if (this.grid[i][j] !== 0) {
-                            let newRow = i;
-                            while (newRow < this.boardSize - 1 && this.grid[newRow+1][j] === 0) {
-                                newRow++;
-                            }
-                            
-                            if (newRow < this.boardSize - 1 && this.grid[newRow+1][j] === this.grid[i][j]) {
-                                // Ghép ô
-                                this.grid[newRow+1][j] *= 2;
-                                this.grid[i][j] = 0;
-                                this.score += this.grid[newRow+1][j];
-                                moved = true;
-                            } else if (newRow !== i) {
-                                // Di chuyển ô
-                                this.grid[newRow][j] = this.grid[i][j];
-                                this.grid[i][j] = 0;
-                                moved = true;
-                            }
-                        }
-                    }
-                }
-                break;
-                
-            case 'left':
-                for (let i = 0; i < this.boardSize; i++) {
-                    for (let j = 1; j < this.boardSize; j++) {
-                        if (this.grid[i][j] !== 0) {
-                            let newCol = j;
-                            while (newCol > 0 && this.grid[i][newCol-1] === 0) {
-                                newCol--;
-                            }
-                            
-                            if (newCol > 0 && this.grid[i][newCol-1] === this.grid[i][j]) {
-                                // Ghép ô
-                                this.grid[i][newCol-1] *= 2;
-                                this.grid[i][j] = 0;
-                                this.score += this.grid[i][newCol-1];
-                                moved = true;
-                            } else if (newCol !== j) {
-                                // Di chuyển ô
-                                this.grid[i][newCol] = this.grid[i][j];
-                                this.grid[i][j] = 0;
-                                moved = true;
-                            }
-                        }
-                    }
-                }
-                break;
-                
-            case 'right':
-                for (let i = 0; i < this.boardSize; i++) {
-                    for (let j = this.boardSize - 2; j >= 0; j--) {
-                        if (this.grid[i][j] !== 0) {
-                            let newCol = j;
-                            while (newCol < this.boardSize - 1 && this.grid[i][newCol+1] === 0) {
-                                newCol++;
-                            }
-                            
-                            if (newCol < this.boardSize - 1 && this.grid[i][newCol+1] === this.grid[i][j]) {
-                                // Ghép ô
-                                this.grid[i][newCol+1] *= 2;
-                                this.grid[i][j] = 0;
-                                this.score += this.grid[i][newCol+1];
-                                moved = true;
-                            } else if (newCol !== j) {
-                                // Di chuyển ô
-                                this.grid[i][newCol] = this.grid[i][j];
-                                this.grid[i][j] = 0;
-                                moved = true;
-                            }
-                        }
-                    }
-                }
-                break;
+            }
         }
-        
-        return moved;
+        return true;
     }
-
+    
     updateView() {
-        const cells = this.board.querySelectorAll('.game-2048-cell');
-        const scoreValue = this.board.parentElement.querySelector('.score-value');
+        // Cập nhật điểm số
+        this.scoreElement.querySelector('.score-value').textContent = this.score;
         
-        // Cập nhật điểm
-        scoreValue.textContent = this.score;
+        // Cập nhật grid
+        this.gridElement.innerHTML = '';
         
-        // Cập nhật các ô
-        for (let i = 0; i < this.boardSize; i++) {
-            for (let j = 0; j < this.boardSize; j++) {
-                const index = i * this.boardSize + j;
-                const cell = cells[index];
-                const value = this.grid[i][j];
-                
-                cell.textContent = value === 0 ? '' : value;
-                cell.className = 'game-2048-cell';
+        for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 4; col++) {
+                const value = this.grid[row][col];
+                const tile = document.createElement('div');
+                tile.className = `game-2048-tile tile-${value}`;
                 
                 if (value > 0) {
-                    cell.classList.add(`game-2048-cell-${value}`);
+                    tile.textContent = value;
+                    tile.classList.add(`tile-color-${Math.min(value, 2048)}`);
                 }
+                
+                this.gridElement.appendChild(tile);
             }
         }
+        
+        // Kiểm tra game over
+        if (this.gameOver) {
+            this.showMessage('Game Over!', 'Chạm để chơi lại');
+        }
+        
+        // Kiểm tra chiến thắng
+        if (!this.won && this.hasWon()) {
+            this.won = true;
+            this.showMessage('Bạn đã thắng!', 'Tiếp tục chơi?');
+        }
     }
-
-    checkWin() {
-        // Kiểm tra nếu có ô nào đạt 2048
-        for (let i = 0; i < this.boardSize; i++) {
-            for (let j = 0; j < this.boardSize; j++) {
-                if (this.grid[i][j] === 2048) {
+    
+    showMessage(title, subtitle) {
+        this.messageElement.innerHTML = `
+            <div class="message-title">${title}</div>
+            <div class="message-subtitle">${subtitle}</div>
+        `;
+        this.messageElement.classList.remove('hidden');
+        
+        // Xử lý click để chơi lại
+        const handler = () => {
+            if (this.gameOver) {
+                this.restart();
+            } else if (this.won) {
+                this.keepPlaying = true;
+                this.messageElement.classList.add('hidden');
+            }
+            this.messageElement.removeEventListener('click', handler);
+        };
+        
+        this.messageElement.addEventListener('click', handler);
+    }
+    
+    hasWon() {
+        for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 4; col++) {
+                if (this.grid[row][col] === 2048) {
                     return true;
                 }
             }
         }
         return false;
     }
-
+    
     checkGameOver() {
-        // Kiểm tra nếu còn ô trống
-        for (let i = 0; i < this.boardSize; i++) {
-            for (let j = 0; j < this.boardSize; j++) {
-                if (this.grid[i][j] === 0) {
-                    return false;
-                }
-            }
-        }
+        // Nếu còn ô trống thì chưa game over
+        if (!this.isGridFull()) return false;
         
-        // Kiểm tra nếu còn nước đi hợp lệ
-        for (let i = 0; i < this.boardSize; i++) {
-            for (let j = 0; j < this.boardSize; j++) {
-                const value = this.grid[i][j];
+        // Kiểm tra xem còn nước đi hợp lệ nào không
+        for (let row = 0; row < 4; row++) {
+            for (let col = 0; col < 4; col++) {
+                const value = this.grid[row][col];
                 
                 // Kiểm tra ô bên phải
-                if (j < this.boardSize - 1 && this.grid[i][j+1] === value) {
+                if (col < 3 && this.grid[row][col + 1] === value) {
                     return false;
                 }
                 
                 // Kiểm tra ô bên dưới
-                if (i < this.boardSize - 1 && this.grid[i+1][j] === value) {
+                if (row < 3 && this.grid[row + 1][col] === value) {
                     return false;
                 }
             }
@@ -2079,51 +1881,293 @@ class Game2048 {
         
         return true;
     }
-
-    showMessage(title, message) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = 'game-2048-message';
-        msgDiv.innerHTML = `
-            <div class="message-content">
-                <h3>${title}</h3>
-                <p>${message}</p>
-                <div class="message-buttons">
-                    <button class="game-btn continue-btn">Tiếp tục</button>
-                    <button class="game-btn restart-btn">Chơi lại</button>
-                </div>
-            </div>
-        `;
-        
-        msgDiv.querySelector('.continue-btn').addEventListener('click', () => {
-            this.keepPlaying = true;
-            msgDiv.remove();
+    
+    setupControls() {
+        // Điều khiển bằng bàn phím
+        document.addEventListener('keydown', (e) => {
+            if (this.gameOver && !this.won) return;
+            
+            let moved = false;
+            
+            switch(e.key) {
+                case 'ArrowUp':
+                    moved = this.moveUp();
+                    break;
+                case 'ArrowDown':
+                    moved = this.moveDown();
+                    break;
+                case 'ArrowLeft':
+                    moved = this.moveLeft();
+                    break;
+                case 'ArrowRight':
+                    moved = this.moveRight();
+                    break;
+                default:
+                    return; // Không xử lý phím khác
+            }
+            
+            if (moved) {
+                this.addRandomTile();
+                this.updateView();
+                
+                if (!this.keepPlaying && this.hasWon()) {
+                    this.won = true;
+                    this.showMessage('Bạn đã thắng!', 'Tiếp tục chơi?');
+                }
+                
+                if (this.checkGameOver()) {
+                    this.gameOver = true;
+                    this.updateBestScore();
+                    this.updateView();
+                }
+            }
         });
         
-        msgDiv.querySelector('.restart-btn').addEventListener('click', () => {
-            this.restart();
-            msgDiv.remove();
-        });
+        // Điều khiển cảm ứng cho mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
         
-        this.container.appendChild(msgDiv);
+        this.container.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        
+        this.container.addEventListener('touchend', (e) => {
+            if (!touchStartX || !touchStartY) return;
+            if (this.gameOver && !this.won) return;
+            
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            
+            const diffX = touchEndX - touchStartX;
+            const diffY = touchEndY - touchStartY;
+            
+            // Xác định hướng vuốt
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                // Vuốt ngang
+                if (diffX > 0) {
+                    this.handleMove(this.moveRight());
+                } else {
+                    this.handleMove(this.moveLeft());
+                }
+            } else {
+                // Vuốt dọc
+                if (diffY > 0) {
+                    this.handleMove(this.moveDown());
+                } else {
+                    this.handleMove(this.moveUp());
+                }
+            }
+            
+            touchStartX = 0;
+            touchStartY = 0;
+        }, { passive: true });
     }
-
+    
+    handleMove(moved) {
+        if (moved) {
+            this.addRandomTile();
+            this.updateView();
+            
+            if (!this.keepPlaying && this.hasWon()) {
+                this.won = true;
+                this.showMessage('Bạn đã thắng!', 'Tiếp tục chơi?');
+            }
+            
+            if (this.checkGameOver()) {
+                this.gameOver = true;
+                this.updateBestScore();
+                this.updateView();
+            }
+        }
+    }
+    
+    moveLeft() {
+        let moved = false;
+        
+        for (let row = 0; row < 4; row++) {
+            // Di chuyển các ô sang trái
+            const newRow = this.grid[row].filter(val => val !== 0);
+            
+            // Gộp các ô giống nhau
+            for (let col = 0; col < newRow.length - 1; col++) {
+                if (newRow[col] === newRow[col + 1]) {
+                    newRow[col] *= 2;
+                    newRow[col + 1] = 0;
+                    this.score += newRow[col];
+                    moved = true;
+                }
+            }
+            
+            // Lọc lại các ô sau khi gộp
+            const mergedRow = newRow.filter(val => val !== 0);
+            
+            // Thêm các ô 0 vào cuối
+            while (mergedRow.length < 4) {
+                mergedRow.push(0);
+            }
+            
+            // Kiểm tra xem có thay đổi không
+            if (!this.arraysEqual(this.grid[row], mergedRow)) {
+                moved = true;
+            }
+            
+            this.grid[row] = mergedRow;
+        }
+        
+        return moved;
+    }
+    
+    moveRight() {
+        let moved = false;
+        
+        for (let row = 0; row < 4; row++) {
+            // Di chuyển các ô sang phải
+            const newRow = this.grid[row].filter(val => val !== 0);
+            
+            // Gộp các ô giống nhau từ phải sang
+            for (let col = newRow.length - 1; col > 0; col--) {
+                if (newRow[col] === newRow[col - 1]) {
+                    newRow[col] *= 2;
+                    newRow[col - 1] = 0;
+                    this.score += newRow[col];
+                    moved = true;
+                }
+            }
+            
+            // Lọc lại các ô sau khi gộp
+            const mergedRow = newRow.filter(val => val !== 0);
+            
+            // Thêm các ô 0 vào đầu
+            while (mergedRow.length < 4) {
+                mergedRow.unshift(0);
+            }
+            
+            // Kiểm tra xem có thay đổi không
+            if (!this.arraysEqual(this.grid[row], mergedRow)) {
+                moved = true;
+            }
+            
+            this.grid[row] = mergedRow;
+        }
+        
+        return moved;
+    }
+    
+    moveUp() {
+        let moved = false;
+        
+        for (let col = 0; col < 4; col++) {
+            // Lấy cột hiện tại
+            let column = [];
+            for (let row = 0; row < 4; row++) {
+                column.push(this.grid[row][col]);
+            }
+            
+            // Di chuyển các ô lên trên
+            const newColumn = column.filter(val => val !== 0);
+            
+            // Gộp các ô giống nhau
+            for (let row = 0; row < newColumn.length - 1; row++) {
+                if (newColumn[row] === newColumn[row + 1]) {
+                    newColumn[row] *= 2;
+                    newColumn[row + 1] = 0;
+                    this.score += newColumn[row];
+                    moved = true;
+                }
+            }
+            
+            // Lọc lại các ô sau khi gộp
+            const mergedColumn = newColumn.filter(val => val !== 0);
+            
+            // Thêm các ô 0 vào cuối
+            while (mergedColumn.length < 4) {
+                mergedColumn.push(0);
+            }
+            
+            // Kiểm tra xem có thay đổi không
+            if (!this.arraysEqual(column, mergedColumn)) {
+                moved = true;
+            }
+            
+            // Cập nhật lại cột
+            for (let row = 0; row < 4; row++) {
+                this.grid[row][col] = mergedColumn[row];
+            }
+        }
+        
+        return moved;
+    }
+    
+    moveDown() {
+        let moved = false;
+        
+        for (let col = 0; col < 4; col++) {
+            // Lấy cột hiện tại
+            let column = [];
+            for (let row = 0; row < 4; row++) {
+                column.push(this.grid[row][col]);
+            }
+            
+            // Di chuyển các ô xuống dưới
+            const newColumn = column.filter(val => val !== 0);
+            
+            // Gộp các ô giống nhau từ dưới lên
+            for (let row = newColumn.length - 1; row > 0; row--) {
+                if (newColumn[row] === newColumn[row - 1]) {
+                    newColumn[row] *= 2;
+                    newColumn[row - 1] = 0;
+                    this.score += newColumn[row];
+                    moved = true;
+                }
+            }
+            
+            // Lọc lại các ô sau khi gộp
+            const mergedColumn = newColumn.filter(val => val !== 0);
+            
+            // Thêm các ô 0 vào đầu
+            while (mergedColumn.length < 4) {
+                mergedColumn.unshift(0);
+            }
+            
+            // Kiểm tra xem có thay đổi không
+            if (!this.arraysEqual(column, mergedColumn)) {
+                moved = true;
+            }
+            
+            // Cập nhật lại cột
+            for (let row = 0; row < 4; row++) {
+                this.grid[row][col] = mergedColumn[row];
+            }
+        }
+        
+        return moved;
+    }
+    
+    arraysEqual(a, b) {
+        for (let i = 0; i < a.length; i++) {
+            if (a[i] !== b[i]) return false;
+        }
+        return true;
+    }
+    
+    updateBestScore() {
+        const bestScore = parseInt(localStorage.getItem('2048-best-score') || 0);
+        if (this.score > bestScore) {
+            localStorage.setItem('2048-best-score', this.score);
+            this.bestScoreElement.querySelector('.score-value').textContent = this.score;
+        }
+    }
+    
     restart() {
-        this.grid = Array(this.boardSize).fill().map(() => Array(this.boardSize).fill(0));
-        this.score = 0;
-        this.gameOver = false;
-        this.won = false;
-        this.keepPlaying = false;
-        
-        this.addRandomTile();
-        this.addRandomTile();
-        this.updateView();
+        this.updateBestScore();
+        this.initGame();
+        this.messageElement.classList.add('hidden');
     }
-
+    
     destroy() {
-        // Dọn dẹp event listeners
+        // Dọn dẹp event listeners nếu cần
         document.removeEventListener('keydown', this.handleKeyPress);
-        this.board.removeEventListener('touchstart', this.handleTouchStart);
-        this.board.removeEventListener('touchend', this.handleTouchEnd);
     }
 }
 

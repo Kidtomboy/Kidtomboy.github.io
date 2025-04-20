@@ -602,37 +602,6 @@ footer {
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .game-2048-score {
-        position: absolute;
-        top: 5px;
-        right: 10px;
-        margin: 0;
-        padding: 8px 12px;
-        z-index: 10;
-    }
-    
-    .game-2048-restart {
-        position: absolute;
-        top: 5px;
-        left: 10px;
-        margin: 0;
-        padding: 8px 12px;
-        z-index: 10;
-    }
-    
-    .game-2048-board {
-        margin-top: 100px;
-    }
-
-    .game-2048-container {
-        position: relative;
-        padding-top: 50px; 
-    }
-    
-    .game-2048-board {
-        margin-top: 0;
-    }
-
     .footer-container {
         flex-direction: column;
         gap: 0.5rem;
@@ -694,76 +663,94 @@ footer {
 }
 
 /* CSS cho game 2048 */
-.game-2048-board {
-    position: relative;
-    background-color: #bbada0;
-    border-radius: 6px;
-    margin: 20px auto;
-    padding: 5px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+.game-2048-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
-.game-2048-cell {
-    position: absolute;
-    background-color: #cdc1b4;
-    border-radius: 3px;
+.game-2048-header .score-container {
+    display: flex;
+    gap: 10px;
+}
+
+.game-2048-header .score {
+    background-color: #bbada0;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 15px;
+    text-align: center;
+    min-width: 60px;
+}
+
+.game-2048-header .score-title {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.game-2048-header .score-value {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.game-2048-header .best-score {
+    background-color: #8f7a66;
+}
+
+.game-2048-header .game-2048-restart {
+    background-color: #8f7a66;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.game-2048-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
+    background-color: #bbada0;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.game-2048-tile {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
+    border-radius: 5px;
+    background-color: #cdc1b4;
     color: #776e65;
-    transition: all 0.1s ease-in-out;
 }
 
-/* Màu sắc cho các ô theo giá trị */
-.game-2048-cell-2 { background-color: #eee4da; }
-.game-2048-cell-4 { background-color: #ede0c8; }
-.game-2048-cell-8 { background-color: #f2b179; color: #f9f6f2; }
-.game-2048-cell-16 { background-color: #f59563; color: #f9f6f2; }
-.game-2048-cell-32 { background-color: #f67c5f; color: #f9f6f2; }
-.game-2048-cell-64 { background-color: #f65e3b; color: #f9f6f2; }
-.game-2048-cell-128 { background-color: #edcf72; color: #f9f6f2; font-size: 20px; }
-.game-2048-cell-256 { background-color: #edcc61; color: #f9f6f2; font-size: 20px; }
-.game-2048-cell-512 { background-color: #edc850; color: #f9f6f2; font-size: 20px; }
-.game-2048-cell-1024 { background-color: #edc53f; color: #f9f6f2; font-size: 16px; }
-.game-2048-cell-2048 { background-color: #edc22e; color: #f9f6f2; font-size: 16px; }
-
-.game-2048-score {
-    background-color: #bbada0;
+.game-2048-tile[class*="tile-color-"] {
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    display: inline-block;
-    margin: 10px;
 }
 
-.game-2048-score .score-title {
-    font-size: 14px;
-    color: #eee4da;
-}
-
-.game-2048-score .score-value {
-    font-size: 24px;
-}
-
-.game-2048-restart {
-    background-color: #8f7a66;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 10px;
-    transition: all 0.2s;
-}
-
-.game-2048-restart:hover {
-    background-color: #9f8b77;
-}
+.tile-color-2 { background-color: #eee4da; color: #776e65; }
+.tile-color-4 { background-color: #ede0c8; color: #776e65; }
+.tile-color-8 { background-color: #f2b179; }
+.tile-color-16 { background-color: #f59563; }
+.tile-color-32 { background-color: #f67c5f; }
+.tile-color-64 { background-color: #f65e3b; }
+.tile-color-128 { background-color: #edcf72; font-size: 20px; }
+.tile-color-256 { background-color: #edcc61; font-size: 20px; }
+.tile-color-512 { background-color: #edc850; font-size: 20px; }
+.tile-color-1024 { background-color: #edc53f; font-size: 16px; }
+.tile-color-2048 { background-color: #edc22e; font-size: 16px; }
 
 .game-2048-message {
     position: absolute;
@@ -771,63 +758,66 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(238, 228, 218, 0.73);
+    background-color: rgba(238, 228, 218, 0.8);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 100;
-    border-radius: 6px;
-}
-
-.game-2048-message .message-content {
-    background-color: #bbada0;
-    padding: 20px;
     border-radius: 5px;
-    text-align: center;
-    color: white;
 }
 
-.game-2048-message h3 {
-    margin-top: 0;
-    font-size: 24px;
+.game-2048-message.hidden {
+    display: none;
 }
 
-.game-2048-message p {
+.game-2048-message .message-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: #776e65;
     margin-bottom: 20px;
-    font-size: 18px;
 }
 
-.game-2048-message .message-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.game-2048-message .game-btn {
+.game-2048-message .message-subtitle {
+    font-size: 20px;
+    color: #776e65;
+    padding: 10px 20px;
     background-color: #8f7a66;
     color: white;
-    border: none;
-    border-radius: 3px;
-    padding: 8px 16px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: all 0.2s;
 }
 
-.game-2048-message .game-btn:hover {
-    background-color: #9f8b77;
-}
-
-.game-2048-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 0 10px;
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .game-2048-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .game-2048-header .score-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .game-2048-header .game-2048-restart {
+        width: 100%;
+    }
+    
+    .game-2048-tile {
+        font-size: 18px;
+    }
+    
+    .tile-color-128, 
+    .tile-color-256, 
+    .tile-color-512 {
+        font-size: 16px;
+    }
+    
+    .tile-color-1024, 
+    .tile-color-2048 {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 768px) {
