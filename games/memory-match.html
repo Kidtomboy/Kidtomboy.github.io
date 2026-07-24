@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Memory Match</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+    }
+    .settings {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .settings select {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+    .game-ui {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .board {
+      display: grid;
+      gap: 8px;
+      padding: 10px;
+      background: var(--card-border);
+      border-radius: var(--radius-md);
+    }
+    .card {
+      width: 70px;
+      height: 70px;
+      background: var(--bg-primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s, background 0.2s;
+      user-select: none;
+    }
+    .card.matched {
+      background: #2ecc71;
+      opacity: 0.7;
+      cursor: default;
+    }
+    .card.selected {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .card.hint {
+      animation: pulse 0.5s infinite;
+      border: 2px solid #f1c40f;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border-radius: var(--radius-md);
+      z-index: 10;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .overlay button {
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      border-radius: 2rem;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .controls {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) {
+      .card { width: 55px; height: 55px; font-size: 1.5rem; }
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>🧠 Memory Match</h1>
+    <div class="settings">
+      <select id="difficultySelect">
+        <option value="easy">Dễ (4x4)</option>
+        <option value="medium" selected>Trung bình (6x6)</option>
+        <option value="hard">Khó (8x8)</option>
+      </select>
+    </div>
+    <div class="game-ui">
+      <span>Cặp: <span id="pairsFound">0</span>/<span id="totalPairs">8</span></span>
+      <span>Lượt: <span id="attempts">0</span></span>
+    </div>
+    <div id="boardContainer" style="position:relative;">
+      <div class="board" id="board"></div>
+    </div>
+    <div class="controls">
+      <button id="restartBtn">🔄 Chơi lại</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/puzzle/memory-match.js"></script>
+</body>
+</html>

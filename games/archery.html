@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Archery</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex; flex-direction: column; align-items: center;
+      margin-top: 80px;
+    }
+    .archery-container {
+      display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+      justify-content: center;
+    }
+    canvas {
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
+      cursor: crosshair;
+    }
+    .hud {
+      display: flex; flex-direction: column; gap: 0.8rem;
+      min-width: 150px;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+    }
+    .hud-section h3 { margin: 0 0 0.3rem; font-size: 0.9rem; }
+    .power-bar {
+      width: 30px; height: 200px;
+      background: var(--bg-tertiary);
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+    .power-fill {
+      position: absolute; bottom: 0; width: 100%;
+      background: linear-gradient(to top, #e74c3c, #f1c40f, #2ecc71);
+      border-radius: 15px;
+      transition: height 0.05s;
+    }
+    .wind-indicator {
+      font-size: 1.2rem; font-weight: bold;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .controls {
+      margin-top: 1rem; display: flex; gap: 1rem;
+    }
+    button {
+      padding: 0.8rem 1.5rem; border-radius: 2rem;
+      border: none; background: var(--accent); color: white;
+      font-weight: bold; cursor: pointer;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>🏹 Archery</h1>
+    <div class="archery-container">
+      <canvas id="archeryCanvas" width="700" height="400"></canvas>
+      <div class="hud">
+        <div class="hud-section">
+          <h3>Điểm: <span id="scoreDisplay">0</span></h3>
+          <h3>Best: <span id="bestDisplay">0</span></h3>
+        </div>
+        <div class="hud-section">
+          <h3>Lực</h3>
+          <div class="power-bar"><div class="power-fill" id="powerFill" style="height:0%"></div></div>
+          <span id="powerText">0%</span>
+        </div>
+        <div class="hud-section">
+          <h3>Gió</h3>
+          <div class="wind-indicator" id="windDisplay">➡️ 0</div>
+        </div>
+        <div class="hud-section">
+          <h3>Mũi tên: <span id="arrowsLeft">∞</span></h3>
+        </div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="newGameBtn">🔄 Ván mới</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/sports/archery.js"></script>
+</body>
+</html>

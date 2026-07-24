@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Pool - 8 Ball & 9 Ball</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: var(--bg-primary); }
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto;
+    }
+    .pool-container {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: 100%;
+      gap: 10px;
+    }
+    canvas {
+      border: 3px solid #5d3a1a;
+      border-radius: 12px;
+      background: #0a5c0a;
+      background-image: radial-gradient(circle, #0a5c0a 0%, #064006 100%);
+      width: 100%;
+      height: auto;
+      aspect-ratio: 800 / 400;
+      touch-action: none;
+    }
+    .side-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 120px;
+      min-width: 80px;
+    }
+    .power-bar-container {
+      width: 20px;
+      height: 200px;
+      background: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px auto;
+      position: relative;
+    }
+    .power-bar-fill {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to top, #ff0, #f00);
+      transition: height 0.1s;
+    }
+    .info-panel {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 0.8rem;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+    .info-panel h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+    .balls-pocketed { display: flex; flex-wrap: wrap; gap: 4px; }
+    .mini-ball {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: bold; color: white;
+      border: 1px solid #333;
+      box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3);
+    }
+    .status-text { font-weight: bold; margin: 0.5rem 0; }
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    @media (max-width: 700px) {
+      .pool-container { flex-direction: column; }
+      .side-panel { width: 100%; flex-direction: row; justify-content: center; }
+      .power-bar-container { width: 100%; height: 20px; margin: 5px 0; }
+      .power-bar-fill { height: 100%; width: 0%; }
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>🎱 Pool</h1>
+    <div style="margin-bottom:10px;display:flex;gap:1rem;">
+      <select id="gameModeSelect">
+        <option value="8">8-Ball</option>
+        <option value="9">9-Ball</option>
+      </select>
+      <button id="newGameBtn">🔄 Ván mới</button>
+    </div>
+    <div class="pool-container">
+      <canvas id="poolCanvas"></canvas>
+      <div class="side-panel" id="sidePanel">
+        <div class="power-bar-container" id="powerBarContainer">
+          <div class="power-bar-fill" id="powerBarFill" style="height:0%"></div>
+        </div>
+        <div class="info-panel" id="infoPanel">
+          <div id="turnIndicator"></div>
+          <div id="statusText" class="status-text"></div>
+          <div id="pocketsDisplay"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/sports/pool.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kidtomboy - Nhà phát triển trang web">
+  <title>Kidtomboy | Chào mừng</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/landing.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <script type="module" src="assets/js/core/theme.js"></script>
+</head>
+<body class="landing-page">
+  <!-- Nền hiệu ứng hạt -->
+  <canvas id="particles"></canvas>
+
+  <div class="landing-container">
+    <!-- Avatar CSS only -->
+    <div class="avatar">
+      <div class="avatar-circle">
+        <span class="avatar-letter">K</span>
+      </div>
+      <div class="avatar-ring"></div>
+    </div>
+
+    <!-- Tên và tagline -->
+    <h1 class="name">Kidtomboy</h1>
+    <p class="tagline">Nhà phát triển trang web</p>
+
+    <!-- Mạng xã hội (CSS icons) -->
+    <div class="social-links">
+      <a href="https://github.com/Kidtomboy" target="_blank" rel="noopener" class="social-icon github" aria-label="GitHub">
+        <span class="icon-github"></span>
+      </a>
+      <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-icon facebook" aria-label="Facebook">
+        <span class="icon-facebook"></span>
+      </a>
+      <a href="https://youtube.com/" target="_blank" rel="noopener" class="social-icon youtube" aria-label="YouTube">
+        <span class="icon-youtube"></span>
+      </a>
+    </div>
+
+    <!-- QR Ngân hàng (placeholder CSS) -->
+    <div class="qr-bank">
+      <div class="qr-placeholder">
+        <span>QR Ngân hàng</span>
+        <small>(thêm ảnh qr-bank.png)</small>
+      </div>
+    </div>
+
+    <!-- Nút vào Trang Chủ -->
+    <a href="home.html" class="btn-enter">
+      <span>Vào Trang Chủ</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Nhạc nền (tự động phát nếu được phép) -->
+  <audio id="bg-music" loop preload="none" src="assets/sound/background.mp3"></audio>
+  <button id="toggle-music" class="music-toggle" aria-label="Bật/tắt nhạc">🔇</button>
+
+  <script type="module">
+    // Hiệu ứng hạt nền
+    import { initParticles } from './assets/js/pages/landing.js';
+    initParticles(document.getElementById('particles'));
+
+    // Xử lý nhạc nền
+    const bgMusic = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('toggle-music');
+    let musicPlaying = false;
+
+    toggleBtn.addEventListener('click', () => {
+      if (musicPlaying) {
+        bgMusic.pause();
+        toggleBtn.textContent = '🔇';
+      } else {
+        bgMusic.play().catch(() => {});
+        toggleBtn.textContent = '🔊';
+      }
+      musicPlaying = !musicPlaying;
+    });
+  </script>
+</body>
+</html>

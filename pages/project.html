@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dự án</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/project.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <header-bar></header-bar>
+  <main class="project-container">
+    <div class="project-controls">
+      <input type="text" id="project-search" placeholder="Tìm dự án...">
+      <select id="language-filter">
+        <option value="">Tất cả ngôn ngữ</option>
+      </select>
+    </div>
+    <div class="project-grid" id="project-list">
+      <!-- Render từ GitHub API -->
+    </div>
+  </main>
+  <back-button></back-button>
+  <script type="module" src="../assets/js/components/header-bar.js"></script>
+  <script type="module" src="../assets/js/components/back-button.js"></script>
+  <script type="module" src="../assets/js/pages/project.js"></script>
+</body>
+</html>

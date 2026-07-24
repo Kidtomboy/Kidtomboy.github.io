@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkers</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+    }
+    .settings {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .settings select, .settings button {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+    .game-ui {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      flex-wrap: wrap;
+    }
+    .status {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      min-height: 2rem;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, 60px);
+      grid-template-rows: repeat(8, 60px);
+      border: 3px solid #333;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .cell {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .cell.light { background: #f0d9b5; }
+    .cell.dark { background: #b58863; }
+    .cell.selected { box-shadow: inset 0 0 0 3px #f1c40f; }
+    .cell.valid-move { box-shadow: inset 0 0 0 3px #2ecc71; }
+    .piece {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    .piece.red { background: radial-gradient(circle at 30% 30%, #e74c3c, #922b21); }
+    .piece.white { background: radial-gradient(circle at 30% 30%, #ecf0f1, #7f8c8d); }
+    .piece.king::after {
+      content: '👑';
+      position: absolute;
+      font-size: 20px;
+      margin-top: -8px;
+      margin-left: 12px;
+    }
+    .piece.king { position: relative; }
+    .controls {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>⚫ Checkers</h1>
+    <div class="settings">
+      <select id="modeSelect">
+        <option value="pvp">2 Người</option>
+        <option value="ai" selected>Đấu Máy</option>
+      </select>
+      <select id="difficultySelect">
+        <option value="easy">Dễ</option>
+        <option value="medium" selected>Trung bình</option>
+        <option value="hard">Khó</option>
+      </select>
+    </div>
+    <div class="game-ui">
+      <span>Người: <span id="player">🔴</span></span>
+      <span>Thắng: <span id="wins">0</span></span>
+      <span>Hòa: <span id="draws">0</span></span>
+      <span>AI: <span id="aiWins">0</span></span>
+    </div>
+    <div class="status" id="status">Lượt của bạn (🔴)</div>
+    <div class="board" id="board"></div>
+    <div class="controls">
+      <button id="newGameBtn">🔄 Ván mới</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/board/checkers.js"></script>
+</body>
+</html>

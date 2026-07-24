@@ -1,0 +1,3 @@
+// Chuỗi bí mật - BẠN PHẢI THAY ĐỔI TRƯỚC KHI TRIỂN KHAI
+export const DEV_PASSWORD = 'Cherry';  // Đổi thành mật khẩu của bạn
+export const DEV_PARAM = 'dev';       // Query param: ?dev=...

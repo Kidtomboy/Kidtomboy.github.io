@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Hangman</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex; flex-direction: column; align-items: center; margin-top: 80px;
+    }
+    .canvas-container {
+      margin: 1rem 0;
+    }
+    #wordDisplay {
+      font-size: 2.5rem; letter-spacing: 10px; margin: 1rem 0; font-weight: bold;
+      min-height: 3rem;
+    }
+    .keyboard {
+      display: flex; flex-direction: column; gap: 6px; margin: 1rem 0;
+      max-width: 600px;
+    }
+    .keyboard-row {
+      display: flex; gap: 4px; justify-content: center;
+    }
+    .key {
+      width: 38px; height: 42px;
+      border-radius: 8px;
+      border: 2px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1rem; font-weight: bold;
+      cursor: pointer; transition: all 0.2s;
+      user-select: none;
+    }
+    .key:hover { background: var(--accent); color: white; }
+    .key.used { opacity: 0.4; cursor: not-allowed; }
+    .key.correct { background: #2ecc71; color: white; border-color: #27ae60; }
+    .key.wrong { background: #e74c3c; color: white; border-color: #c0392b; }
+    .hint-box {
+      margin: 0.5rem 0; font-size: 1rem; color: var(--text-secondary);
+      min-height: 1.5rem;
+    }
+    .controls {
+      margin-top: 1rem; display: flex; gap: 1rem;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>📝 Hangman</h1>
+    <div class="game-ui">
+      <span>Lượt sai còn lại: <span id="lives">6</span></span>
+      <span>Điểm: <span id="score">0</span></span>
+    </div>
+    <div class="canvas-container">
+      <canvas id="hangmanCanvas" width="200" height="200"></canvas>
+    </div>
+    <div id="wordDisplay"></div>
+    <div class="hint-box" id="hintBox"></div>
+    <div class="keyboard" id="keyboard"></div>
+    <div class="controls">
+      <button id="restartBtn">🔄 Từ mới</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/word/hangman.js"></script>
+</body>
+</html>

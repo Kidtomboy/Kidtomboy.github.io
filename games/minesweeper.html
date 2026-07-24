@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>💣 Minesweeper</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+    }
+    .settings {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .settings select, .settings button {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+    .game-ui {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .board {
+      display: grid;
+      gap: 2px;
+      background: var(--card-border);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      user-select: none;
+    }
+    .cell {
+      width: 32px;
+      height: 32px;
+      background: var(--bg-primary);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .cell.revealed {
+      background: var(--bg-secondary);
+      cursor: default;
+    }
+    .cell.mine-revealed {
+      background: #e74c3c;
+    }
+    .cell.flagged {
+      background: #f1c40f;
+    }
+    .cell.mine-highlight {
+      background: rgba(231, 76, 60, 0.4);
+      border: 1px solid #e74c3c;
+    }
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border-radius: var(--radius-md);
+      z-index: 10;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .overlay button {
+      margin-top: 1rem;
+      padding: 0.8rem 2rem;
+      border-radius: 2rem;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .controls {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>💣 Minesweeper</h1>
+    <div class="settings">
+      <select id="difficultySelect">
+        <option value="easy">Dễ (9x9, 10 mìn)</option>
+        <option value="medium" selected>Trung bình (16x16, 40 mìn)</option>
+        <option value="hard">Khó (30x16, 99 mìn)</option>
+      </select>
+    </div>
+    <div class="game-ui">
+      <span>⏱️ <span id="timer">000</span>s</span>
+      <span>🚩 <span id="minesLeft">10</span></span>
+    </div>
+    <div id="boardContainer" style="position:relative;">
+      <div class="board" id="board"></div>
+    </div>
+    <div class="controls">
+      <button id="restartBtn">🔄 Chơi lại</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/puzzle/minesweeper.js"></script>
+</body>
+</html>

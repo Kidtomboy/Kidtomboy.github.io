@@ -1,0 +1,221 @@
+/* === Components CSS – Dùng chung cho toàn bộ site === */
+
+/* ----- Header Bar ----- */
+header-bar {
+  --header-height: 60px;
+}
+header-bar .header-content {
+  height: var(--header-height);
+}
+
+/* ----- Music Mini Player ----- */
+music-mini {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 1100;
+  display: none;
+  overflow: hidden;
+}
+music-mini.visible {
+  display: block;
+  animation: slideUp 0.3s ease;
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ----- Navigation Menu (More dropdown) ----- */
+.dropdown-menu {
+  position: absolute;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 0.5rem 0;
+  min-width: 200px;
+  z-index: 1001;
+  display: none;
+  animation: slideDown 0.2s ease;
+}
+.dropdown-menu.show {
+  display: block;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  transition: background var(--transition-speed);
+}
+.dropdown-menu a:hover {
+  background: var(--accent);
+  color: white;
+}
+
+/* ----- Back Button ----- */
+back-button .back-btn {
+  width: 50px;
+  height: 50px;
+}
+back-button .back-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----- Search Box ----- */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+.search-box input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  border: 2px solid var(--card-border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: border-color var(--transition-speed);
+}
+.search-box input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.search-box button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----- Bookmark Grid ----- */
+.bookmark-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.bookmark-item {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  text-align: center;
+  transition: all var(--transition-speed);
+  cursor: pointer;
+}
+.bookmark-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ----- Game Card (Hub) ----- */
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-speed);
+}
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+/* ----- Todo Item ----- */
+todo-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 0.5rem;
+  transition: background var(--transition-speed);
+}
+todo-item.completed {
+  opacity: 0.7;
+}
+
+/* ----- Modal ----- */
+modal-dialog {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+modal-dialog .modal-content {
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* ----- Toast ----- */
+toast-notify {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-lg);
+  z-index: 3000;
+  animation: fadeInUp 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+}
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateX(-50%) translateY(20px); }
+}
+
+/* ----- Settings Panel ----- */
+.settings-panel {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* ----- Responsive chung ----- */
+@media (max-width: 768px) {
+  music-mini {
+    width: calc(100vw - 40px);
+    bottom: 70px;
+    right: 20px;
+  }
+  header-bar nav a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}

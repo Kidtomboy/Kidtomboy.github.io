@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Solitaire</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex; flex-direction: column; align-items: center;
+      margin-top: 20px; user-select: none;
+    }
+    .game-container {
+      position: relative;
+      width: 100%; max-width: 640px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1rem 2rem;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .top-row, .bottom-row {
+      display: grid;
+      grid-template-columns: repeat(7, 80px);
+      gap: 8px;
+      justify-content: center;
+    }
+    .cell {
+      width: 80px;
+      border-radius: 8px;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cell.stock, .cell.waste {
+      height: 110px;
+      background: var(--bg-primary);
+      border: 2px solid var(--card-border);
+    }
+    .cell.empty {
+      height: 110px;
+      background: transparent;
+      border: none;
+    }
+    .cell.foundation {
+      height: 110px;
+      border: 2px solid var(--card-border);
+      background: var(--bg-primary);
+      font-size: 2.5rem;
+      color: var(--text-secondary);
+      opacity: 0.4;
+    }
+    .cell.foundation.has-card {
+      opacity: 1;
+    }
+    .cell.tableau {
+      border: 2px dashed var(--card-border);
+      background: var(--bg-primary);
+      min-height: 110px;
+    }
+    .divider {
+      width: 100%; height: 3px;
+      background: var(--text-secondary);
+      opacity: 0.4;
+      margin: 0.8rem 0;
+    }
+    .card {
+      width: 76px; height: 100px;
+      border-radius: 6px;
+      position: absolute;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: grab;
+      font-weight: bold;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      transition: transform 0.1s;
+    }
+    .card:active { cursor: grabbing; }
+    .card.face-down {
+      background: #1a6dff;
+      background-image: repeating-linear-gradient(45deg, #1558c0 0px, #1558c0 8px, #1a6dff 8px, #1a6dff 16px);
+      border: 3px solid #0d47a1;
+    }
+    .card.face-up {
+      background: #ffffff;
+      border: 2px solid #ddd;
+    }
+    .card.red { color: #e74c3c; }
+    .card.black { color: #2c3e50; }
+    .card.dragging { opacity: 0.6; transform: scale(1.05); }
+    .card .corner-top {
+      position: absolute; top: 4px; left: 6px;
+      font-size: 0.9rem; line-height: 1;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .card .corner-bottom {
+      position: absolute; bottom: 4px; right: 6px;
+      font-size: 0.9rem; line-height: 1;
+      display: flex; flex-direction: column; align-items: center;
+      transform: rotate(180deg);
+    }
+    .card .center-suit {
+      font-size: 2rem;
+    }
+    /* Overlay chiến thắng */
+    .win-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 10; border-radius: var(--radius-lg);
+      color: white; font-size: 2rem; font-weight: bold;
+    }
+    .win-overlay button {
+      margin-top: 1rem; padding: 0.8rem 2rem;
+      border-radius: 2rem; border: none;
+      background: var(--accent); color: white;
+      font-weight: bold; cursor: pointer;
+    }
+    .confetti {
+      position: absolute; top: -50px;
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(720deg); }
+    }
+    .controls {
+      margin-top: 1.5rem; display: flex; gap: 1rem;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>🃏 Solitaire</h1>
+    <div class="game-container" id="gameContainer">
+      <div class="top-row" id="topRow"></div>
+      <div class="divider"></div>
+      <div class="bottom-row" id="bottomRow"></div>
+    </div>
+    <div class="controls">
+      <button id="newGameBtn">🔄 Ván mới</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/card/solitaire.js"></script>
+</body>
+</html>

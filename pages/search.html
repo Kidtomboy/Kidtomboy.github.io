@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tìm kiếm</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <header-bar></header-bar>
+  <main class="search-container">
+    <div class="search-engine-selector">
+      <button data-engine="google" class="active">Google</button>
+      <button data-engine="duckduckgo">DuckDuckGo</button>
+      <button data-engine="bing">Bing</button>
+      <button data-engine="yahoo">Yahoo</button>
+      <button data-engine="brave">Brave</button>
+      <button data-engine="yandex">Yandex</button>
+      <button data-engine="ecosia">Ecosia</button>
+    </div>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Nhập từ khóa..." autofocus>
+      <button id="search-btn">🔍</button>
+    </div>
+    <div class="bookmarks" id="bookmarks-container">
+      <!-- Bookmark items sẽ được render bằng JS -->
+    </div>
+    <div class="settings-panel" id="settings-panel">
+      <!-- Cài đặt: theme, default engine, bookmarks -->
+    </div>
+  </main>
+  <back-button></back-button>
+  <script type="module" src="../assets/js/components/header-bar.js"></script>
+  <script type="module" src="../assets/js/components/back-button.js"></script>
+  <script type="module" src="../assets/js/pages/search.js"></script>
+</body>
+</html>

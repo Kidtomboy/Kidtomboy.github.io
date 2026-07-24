@@ -1,0 +1,77 @@
+/* Support Page Styles */
+
+.support-container {
+  max-width: 800px;
+  margin: 6rem auto 2rem;
+  padding: 0 1.5rem;
+}
+
+.faq-section details {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: all var(--transition-speed);
+}
+.faq-section summary {
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-section summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  transition: transform var(--transition-speed);
+}
+.faq-section details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.contact-form {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 2rem 0;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.contact-form button {
+  background: var(--accent);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.social-direct {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.social-direct a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  transition: background var(--transition-speed);
+}
+.social-direct a:hover {
+  background: var(--accent);
+  color: white;
+}

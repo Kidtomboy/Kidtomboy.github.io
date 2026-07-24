@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Chess</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    body { margin: 0; }
+    #gameContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      min-height: 100vh;
+    }
+    .main-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .clock-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .clock-button {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 4px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1.8rem;
+      font-family: monospace;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .clock-button.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent);
+      background: var(--bg-secondary);
+    }
+    .clock-button:active {
+      transform: scale(0.95);
+    }
+    .player-label {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, 60px);
+      grid-template-rows: repeat(8, 60px);
+      border: 3px solid #333;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .cell {
+      width: 60px; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+    }
+    .cell.light { background: #f0d9b5; }
+    .cell.dark { background: #b58863; }
+    .cell.selected { box-shadow: inset 0 0 0 3px #f1c40f; }
+    .cell.move-dot::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      background: currentColor;
+      border-radius: 50%;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .white-dot .move-dot::after { color: white; }
+    .black-dot .move-dot::after { color: black; }
+    .piece {
+      cursor: grab;
+      font-weight: bold;
+      line-height: 1;
+    }
+    .piece.white {
+      color: #ffffff;
+      text-shadow: 0 0 3px #000, 0 0 5px #000;
+    }
+    .piece.black {
+      color: #000000;
+      text-shadow: 0 0 3px #fff, 0 0 5px #fff;
+    }
+    .status {
+      text-align: center;
+      font-size: 1.4rem;
+      margin: 0.5rem 0;
+      min-height: 2rem;
+    }
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    button {
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    @media (max-width: 700px) {
+      .main-area {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .clock-panel {
+        flex-direction: row;
+      }
+      .clock-button {
+        width: 80px;
+        height: 80px;
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div id="gameContainer">
+    <h1>♟ Chess</h1>
+    <div class="status" id="status">Lượt Trắng</div>
+    <div class="main-area">
+      <!-- Bên trái: Trắng -->
+      <div class="clock-panel" id="leftPanel">
+        <div class="player-label">Trắng</div>
+        <button class="clock-button" id="whiteClockBtn">10:00</button>
+      </div>
+
+      <!-- Bàn cờ -->
+      <div class="board" id="board"></div>
+
+      <!-- Bên phải: Đen -->
+      <div class="clock-panel" id="rightPanel">
+        <div class="player-label">Đen</div>
+        <button class="clock-button" id="blackClockBtn">10:00</button>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="pauseBtn">⏸️ Tạm dừng</button>
+      <button id="resetBtn">🔄 Chơi lại</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary); text-align: center;">
+      💡 <strong>Mẹo:</strong> Để khôi phục bàn cờ đầy đủ quân (huỷ mọi chấp quân), hãy <strong>tải lại trang (F5)</strong>.
+    </p>
+  <script type="module" src="../assets/js/games/board/chess.js"></script>
+</body>
+</html>

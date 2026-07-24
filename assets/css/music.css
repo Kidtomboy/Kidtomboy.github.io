@@ -1,0 +1,127 @@
+.music-container {
+  max-width: 1200px;
+  margin: 80px auto 0;
+  padding: 2rem;
+}
+
+.music-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+}
+
+.playlist-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.playlist {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.playlist li {
+  padding: 0.8rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playlist li:hover { background: var(--bg-tertiary); }
+.playlist li.active { background: var(--accent); color: white; }
+
+.player-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.album-art {
+  width: 250px;
+  height: 250px;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.progress-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.progress-bar input[type="range"] {
+  flex: 1;
+}
+
+.player-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.player-controls button {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+}
+
+.player-controls button:hover { background: var(--accent); color: white; }
+
+.volume-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 200px;
+}
+
+#visualizer {
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+}
+
+.playlist-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.playlist-controls button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .music-layout {
+    grid-template-columns: 1fr;
+  }
+}

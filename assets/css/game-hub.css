@@ -1,0 +1,51 @@
+/* Game Hub Styles */
+
+.game-hub {
+  max-width: var(--max-width);
+  margin: 6rem auto 2rem;
+  padding: 0 1.5rem;
+}
+.game-hub h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.category {
+  margin-bottom: 3rem;
+}
+.category h2 {
+  font-size: 1.8rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.game-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all var(--transition-speed);
+}
+.game-card:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.game-card .emoji {
+  display: block;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}

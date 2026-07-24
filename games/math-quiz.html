@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex; flex-direction: column; align-items: center;
+      margin-top: 80px;
+    }
+    .settings {
+      display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .settings select {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg); color: var(--text-primary);
+      font-size: 1rem;
+    }
+    .quiz-card {
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-lg);
+      padding: 2rem 3rem;
+      text-align: center;
+      margin: 1rem 0;
+      min-width: 300px;
+    }
+    .question {
+      font-size: 3rem; font-weight: bold; margin: 1rem 0;
+    }
+    .answer-input {
+      font-size: 2rem; padding: 0.5rem 1rem; width: 150px;
+      text-align: center; border-radius: var(--radius-sm);
+      border: 2px solid var(--card-border);
+      background: var(--bg-primary); color: var(--text-primary);
+    }
+    .timer {
+      font-size: 1.5rem; color: var(--accent); margin: 0.5rem 0;
+    }
+    .game-ui {
+      display: flex; gap: 2rem; margin-bottom: 1rem; font-size: 1.1rem;
+    }
+    .controls {
+      margin-top: 1rem; display: flex; gap: 1rem;
+    }
+    button {
+      padding: 0.8rem 2rem; border-radius: 2rem;
+      border: none; background: var(--accent); color: white;
+      font-weight: bold; cursor: pointer;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>📐 Math Quiz</h1>
+    <div class="settings">
+      <select id="operationSelect">
+        <option value="all">Tất cả</option>
+        <option value="add">Cộng</option>
+        <option value="sub">Trừ</option>
+        <option value="mul">Nhân</option>
+        <option value="div">Chia</option>
+      </select>
+      <select id="difficultySelect">
+        <option value="easy">Dễ (1-20)</option>
+        <option value="medium" selected>Trung bình (1-100)</option>
+        <option value="hard">Khó (1-1000)</option>
+      </select>
+    </div>
+    <div class="game-ui">
+      <span>Điểm: <span id="score">0</span></span>
+      <span>Best: <span id="best">0</span></span>
+      <span>Câu đúng: <span id="correct">0</span></span>
+    </div>
+    <div class="quiz-card">
+      <div class="timer" id="timer">⏱️ 15s</div>
+      <div class="question" id="question">5 + 3 = ?</div>
+      <input type="number" class="answer-input" id="answerInput" autofocus>
+      <p style="margin-top:0.5rem;">Nhấn Enter để trả lời</p>
+    </div>
+    <div class="controls">
+      <button id="restartBtn">🔄 Chơi lại</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/educational/math-quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trung tâm Game</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-hub.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <header-bar></header-bar>
+  <main class="game-hub">
+    <h1>🎮 Bộ sưu tập game</h1>
+    <div class="category" data-category="arcade">
+      <h2>Arcade</h2>
+      <div class="game-grid">
+        <a href="../games/snake.html" class="game-card">🐍 Snake</a>
+        <a href="../games/tetris.html" class="game-card">🧱 Tetris</a>
+        <a href="../games/flappy-bird.html" class="game-card">🐦 Flappy Bird</a>
+        <a href="../games/breakout.html" class="game-card">🧱 Breakout</a>
+        <a href="../games/dino-runner.html" class="game-card">🦖 Dino Runner</a>
+      </div>
+    </div>
+    <!-- Các danh mục khác tương tự -->
+  </main>
+  <back-button></back-button>
+  <script type="module" src="../assets/js/components/header-bar.js"></script>
+  <script type="module" src="../assets/js/components/back-button.js"></script>
+</body>
+</html>

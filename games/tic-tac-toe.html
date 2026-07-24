@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="../assets/css/global.css">
+  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
+  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
+  <link rel="stylesheet" href="../assets/css/game-common.css">
+  <style>
+    .game-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 80px;
+      position: relative;
+    }
+    .settings {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+    .settings select, .settings button {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+    .board-container {
+      position: relative;
+      margin: 1rem 0;
+    }
+    .board-grid {
+      display: grid;
+      gap: 4px;
+      background: var(--card-border);
+      padding: 4px;
+      border-radius: var(--radius-md);
+    }
+    .cell {
+      background: var(--bg-primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background var(--transition-speed);
+      user-select: none;
+      aspect-ratio: 1/1;
+    }
+    .cell:hover { background: var(--bg-tertiary); }
+    .cell.x { color: #e74c3c; }
+    .cell.o { color: #3498db; }
+    .cell.win { animation: pulse 0.5s infinite; background: var(--accent); color: white; }
+    #endlessCanvas {
+      display: none;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      touch-action: none;
+    }
+    .status {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      min-height: 2rem;
+    }
+    .game-ui {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <div class="game-wrapper">
+    <h1>🎯 Tic Tac Toe</h1>
+    <div class="settings">
+      <select id="modeSelect">
+        <option value="pvp">2 Người</option>
+        <option value="ai" selected>Đấu Máy</option>
+      </select>
+      <select id="difficultySelect">
+        <option value="easy">Dễ</option>
+        <option value="medium" selected>Trung bình</option>
+        <option value="hard">Khó</option>
+      </select>
+      <select id="sizeSelect">
+        <option value="3" selected>3x3</option>
+        <option value="4">4x4</option>
+        <option value="5">5x5</option>
+        <option value="20">Endless 20x20</option>
+      </select>
+    </div>
+    <div class="game-ui">
+      <span>Người: <span id="player">X</span></span>
+      <span>Thắng: <span id="wins">0</span></span>
+      <span>Hòa: <span id="draws">0</span></span>
+      <span>AI: <span id="aiWins">0</span></span>
+    </div>
+    <div class="status" id="status">Lượt của bạn (X)</div>
+    <div class="board-container">
+      <div class="board-grid" id="boardGrid"></div>
+      <canvas id="endlessCanvas" width="600" height="600"></canvas>
+    </div>
+    <div class="controls">
+      <button id="newGameBtn">🔄 Ván mới</button>
+      <button id="fullscreenBtn">⛶ Toàn màn</button>
+    </div>
+  </div>
+  <script type="module" src="../assets/js/games/board/tic-tac-toe.js"></script>
+</body>
+</html>
