@@ -1,4 +1,5 @@
 // Ghi chú Markdown: lưu localStorage, xem trước an toàn (escape trước, chỉ cho phép link http/https/mailto).
+import { md, esc } from '../core/md.js';
 const KEY = 'notes.v1';
 const $ = id => document.getElementById(id);
 const title = $('n-title'), text = $('n-text'), prev = $('n-prev'), list = $('n-list');
@@ -6,30 +7,6 @@ let notes, cur;
 
 const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } };
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(notes)); } catch (e) { /* đầy bộ nhớ hoặc bị chặn */ } };
-const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-function inline(s) {
-  return esc(s)
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
-    .replace(/\*([^*]+)\*/g, '<i>$1</i>')
-    .replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-}
-function md(src) {
-  const out = []; let inList = false, inCode = false;
-  for (const line of src.split('\n')) {
-    if (line.startsWith('```')) { out.push(inCode ? '</pre>' : '<pre class="code">'); inCode = !inCode; continue; }
-    if (inCode) { out.push(esc(line)); continue; }
-    const li = line.match(/^\s*[-*]\s+(.*)/);
-    if (li) { if (!inList) { out.push('<ul>'); inList = true; } out.push('<li>' + inline(li[1]) + '</li>'); continue; }
-    if (inList) { out.push('</ul>'); inList = false; }
-    const h = line.match(/^(#{1,3})\s+(.*)/);
-    out.push(h ? `<h${h[1].length + 1}>${inline(h[2])}</h${h[1].length + 1}>` : line.trim() ? `<p>${inline(line)}</p>` : '');
-  }
-  if (inList) out.push('</ul>'); if (inCode) out.push('</pre>');
-  return out.join('\n');
-}
-
 function renderList() {
   list.innerHTML = notes.map(n => `<li data-id="${n.id}" ${n.id === cur ? 'aria-current="true"' : ''}>${esc(n.title || 'Không tên')}<small>${new Date(n.at).toLocaleDateString('vi-VN')}</small></li>`).join('') || '<li class="muted">Chưa có ghi chú</li>';
 }

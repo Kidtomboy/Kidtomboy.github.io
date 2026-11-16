@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+  <script>(function(){try{var d=document.documentElement;d.setAttribute('data-theme',localStorage.getItem('theme')||'dark');d.setAttribute('data-accent',localStorage.getItem('accent')||'green');if(localStorage.getItem('fx')==='off')d.setAttribute('data-fx','off');var f=localStorage.getItem('fsize');if(f)d.style.fontSize=f+'%'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Checkers"><meta property="og:description" content="Kidtomboy"><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
   <title>Checkers</title>

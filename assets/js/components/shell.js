@@ -1,13 +1,14 @@
 // Khung chung: header, menu di động, nút đổi giao diện, footer.
 import { getTheme, toggleTheme } from '../core/theme.js';
 import { openPalette } from './palette.js';
+import { openSettings } from './settings.js';
 
 const ROOT = new URL('../../../', import.meta.url).pathname; // gốc site, đúng cả khi đặt trong thư mục con
 const NAV = [
   ['index.html', 'Trang chủ'], ['pages/che779.html', 'Che779'], ['pages/project.html', 'Dự án'], ['pages/game.html', 'Game'], ['pages/about.html', 'Giới thiệu']
 ];
 const MORE = [
-  ['pages/links.html', 'Liên kết'], ['pages/notes.html', 'Ghi chú'], ['pages/terminal.html', 'Terminal'], ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ']
+  ['pages/tools.html', 'Công cụ'], ['pages/links.html', 'Liên kết'], ['pages/notes.html', 'Ghi chú'], ['pages/terminal.html', 'Terminal'], ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ']
 ];
 
 function isCurrent(href) {
@@ -29,11 +30,13 @@ function build() {
           <div class="more-list">${MORE.map(([h, t]) => `<a href="${ROOT}${h}"${isCurrent(h) ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</div></div>
       </nav>
       <button class="icon-btn" id="search-btn" aria-label="Tìm nhanh (Ctrl+K)" title="Tìm nhanh (Ctrl+K)">⌕</button>
+      <button class="icon-btn" id="set-btn" aria-label="Cài đặt" title="Cài đặt">⚙</button>
       <button class="icon-btn" id="theme-btn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện"></button>
       <button class="icon-btn menu-btn" id="menu-btn" aria-label="Mở menu" aria-expanded="false">☰</button>
     </div>`;
   document.body.prepend(header);
 
+  header.querySelector('#set-btn').addEventListener('click', openSettings);
   header.querySelector('#search-btn').addEventListener('click', openPalette);
   const skip = document.createElement('a'); skip.className = 'skip'; skip.href = '#main'; skip.textContent = 'Bỏ qua menu'; document.body.prepend(skip);
   const mainEl = document.querySelector('main'); if (mainEl && !mainEl.id) mainEl.id = 'main';
@@ -54,10 +57,19 @@ function build() {
   document.addEventListener('click', () => { more.classList.remove('open'); moreBtn.setAttribute('aria-expanded', 'false'); });
   nav.addEventListener('click', e => { if (e.target.closest('a')) nav.classList.remove('open'); });
 
+  const bar = document.createElement('div'); bar.className = 'progress'; document.body.prepend(bar);
+  const top = document.createElement('button'); top.className = 'icon-btn to-top'; top.setAttribute('aria-label', 'Lên đầu trang'); top.textContent = '↑'; document.body.append(top);
+  top.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+  const onScroll = () => { const h = document.documentElement.scrollHeight - innerHeight; bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + '%'; top.classList.toggle('show', scrollY > 500); };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } }), { threshold: .08 });
+    document.querySelectorAll('main .card, main .section-title, main .stat').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('reveal'); io.observe(el); } });
+  }
   if (!document.body.hasAttribute('data-no-footer')) {
     const footer = document.createElement('footer');
     footer.className = 'site-footer';
-    footer.innerHTML = `&copy; Kidtomboy (Cherry) · <a href="https://github.com/Kidtomboy">GitHub</a>`;
+    footer.innerHTML = `&copy; Kidtomboy (Cherry) · <a href="https://github.com/Kidtomboy">GitHub</a> · <span class="kbd">?</span> phím tắt`;
     document.body.append(footer);
   }
 }

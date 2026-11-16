@@ -100,6 +100,11 @@ export const SITE = {
    "games chơi"
   ],
   [
+   "pages/tools.html",
+   "Công cụ (base64, hash, json, regex…)",
+   "tools base64 hash sha256 json regex password uuid pomodoro timestamp color"
+  ],
+  [
    "pages/links.html",
    "Liên kết (mạng xã hội)",
    "links social facebook telegram discord github liên hệ"

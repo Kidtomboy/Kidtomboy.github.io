@@ -2,11 +2,11 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+  <script>(function(){try{var d=document.documentElement;d.setAttribute('data-theme',localStorage.getItem('theme')||'dark');d.setAttribute('data-accent',localStorage.getItem('accent')||'green');if(localStorage.getItem('fx')==='off')d.setAttribute('data-fx','off');var f=localStorage.getItem('fsize');if(f)d.style.fontSize=f+'%'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kidtomboy (Cherry): lập trình viên, nghiên cứu bảo mật và phần mềm.">
+  <meta name="description" content="Kidtomboy (Cherry), Đỗ Đình Hiếu: lập trình viên, nghiên cứu bảo mật và phần mềm ở Hải Phòng, Việt Nam.">
   <meta name="theme-color" content="#05080a">
-  <meta property="og:title" content="Giới thiệu · Kidtomboy"><meta property="og:description" content="Kidtomboy (Cherry): lập trình viên, nghiên cứu bảo mật và phần mềm."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <meta property="og:title" content="Giới thiệu · Kidtomboy"><meta property="og:description" content="Kidtomboy (Cherry), Đỗ Đình Hiếu: lập trình viên, nghiên cứu bảo mật và phần mềm ở Hải Phòng, Việt Nam."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
   <title>Giới thiệu · Kidtomboy</title>
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="../manifest.json">
@@ -17,13 +17,45 @@
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <main class="container about">
+  <main class="container about" style="max-width:820px">
     <h1 class="page-title">Giới thiệu</h1>
-    <p class="page-sub">Mình là <b>Kidtomboy</b>, tên thật Đỗ Đình Hiếu, biệt danh <b>Cherry</b> 🍒. Mình sống và làm việc ở Hải Phòng, Việt Nam.</p>
-    <section><h2>Mình làm gì</h2><p>Lập trình, nghiên cứu bảo mật và nghiên cứu phần mềm. Mình học và làm việc từ xa, thích thử những thứ mới và sẵn sàng góp sức cho dự án cộng đồng.</p></section>
-    <section><h2>Ngôn ngữ yêu thích</h2><ul><li>Python</li><li>JavaScript</li><li>TypeScript</li><li>C</li><li>C#</li><li>Java</li></ul></section>
-    <section><h2>Dự án nổi bật</h2><p><b>Che779</b>: bộ giả lập game J2ME cho Windows, Linux và Android. Xem ở <a href="project.html" style="color:var(--accent);font-weight:800">trang Dự án</a>.</p></section>
-    <section><h2>Liên hệ</h2><p>Qua <a href="https://github.com/Kidtomboy" style="color:var(--accent);font-weight:800" target="_blank" rel="noopener">GitHub</a>, <a href="https://t.me/KidtomboyReal" style="color:var(--accent);font-weight:800" target="_blank" rel="noopener">Telegram</a> hoặc <a href="https://kidtomboy.blogspot.com/" style="color:var(--accent);font-weight:800" target="_blank" rel="noopener">blog</a>.</p></section>
+    <p class="page-sub">Mình là <b>Hiếu</b> (Đỗ Đình Hiếu), mọi người hay gọi là <b>Cherry</b>, online là <b>Kidtomboy</b>. Mình ở Hải Phòng, Việt Nam, học và làm việc từ xa.</p>
+
+    <section>
+      <h2>Mình làm gì</h2>
+      <p>Mình lập trình, nghiên cứu bảo mật và nghiên cứu phần mềm. Mình thích thử những thứ mới, thích làm đồ nhỏ mà dùng được thật, và sẵn sàng góp sức cho các dự án cộng đồng.</p>
+    </section>
+
+    <section>
+      <h2>Ngôn ngữ mình dùng</h2>
+      <ul><li>Python</li><li>JavaScript</li><li>TypeScript</li><li>C</li><li>C#</li><li>Java</li></ul>
+    </section>
+
+    <section>
+      <h2>Dự án chính: Che779</h2>
+      <p>Bộ giả lập game Java (J2ME) cho Windows, Linux và Android. Nó dựa trên MicroEmulator và J2ME Loader, mình thêm lớp riêng: nhiều tab, proxy theo tab, đồng bộ thao tác, dọn RAM. <a href="che779.html" style="color:var(--accent);font-weight:700">Xem và tải về →</a></p>
+    </section>
+
+    <section>
+      <h2>Hành trình</h2>
+      <ol class="timeline">
+        <li><time>08/2024</time><h3>Tạo tài khoản và trang đầu tiên</h3><p class="muted">Những commit đầu của trang cá nhân này.</p></li>
+        <li><time>03–04/2025</time><h3>Trang web nhiều trang đầu tiên</h3><p class="muted">Trung tâm liên kết, game, nhạc, ghi chú công việc, tìm kiếm trên GitHub Pages.</p></li>
+        <li><time>11/2026</time><h3>Che779 lên Android</h3><p class="muted">Bản APK Che779 (nền J2ME Loader) ra mắt kèm bản clone.</p></li>
+        <li><time>16/11/2026</time><h3>Che779 v1.3.0 cho cả 4 repo</h3><p class="muted">Tách rõ nền tảng: Windows (2 repo), Linux, Android. Phát hành tự động kèm SHA256SUMS.</p></li>
+        <li><time>11/2026</time><h3>Viết lại trang web này</h3><p class="muted">Phong cách terminal tối, có công cụ, terminal tương tác và số liệu GitHub trực tiếp.</p></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Mình dùng gì</h2>
+      <ul><li>Windows</li><li>Linux</li><li>VS Code</li><li>Git &amp; GitHub</li></ul>
+    </section>
+
+    <section>
+      <h2>Liên hệ</h2>
+      <p>Qua <a href="https://github.com/Kidtomboy" style="color:var(--accent);font-weight:800" target="_blank" rel="noopener">GitHub</a>, <a href="https://t.me/KidtomboyReal" style="color:var(--accent);font-weight:800" target="_blank" rel="noopener">Telegram</a>, <a href="https://kidtomboy.blogspot.com/" style="color:var(--accent);font-weight:800" target="_blank" rel="noopener">blog</a>, hoặc xem đầy đủ ở <a href="links.html" style="color:var(--accent);font-weight:800">trang Liên kết</a>.</p>
+    </section>
   </main>
   <script type="module" src="../assets/js/components/shell.js"></script>
 </body>

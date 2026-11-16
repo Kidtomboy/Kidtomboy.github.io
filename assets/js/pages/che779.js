@@ -1,6 +1,7 @@
 // Trang Che779: lấy bản phát hành mới nhất của 4 repo trực tiếp từ GitHub.
 import { SITE } from '../core/site-data.js';
 import { gh, fmtSize, esc } from '../core/github.js';
+import { md } from '../core/md.js';
 
 const box = document.getElementById('releases');
 const tabs = document.getElementById('plat-tabs');
@@ -16,6 +17,7 @@ function card(r, rel) {
     const files = rel.assets.filter(a => a !== sums);
     body = `<p class="rel-line"><span class="badge">${esc(rel.tag_name)}</span> <span class="muted">${new Date(rel.published_at).toLocaleDateString('vi-VN')}</span></p>
       <ul class="files">${files.map(a => `<li><a href="${esc(a.browser_download_url)}"><span>⬇ ${esc(a.name)}</span><small>${fmtSize(a.size)} · ${a.download_count} lượt tải</small></a></li>`).join('')}</ul>
+      ${rel.body ? `<details class="notes"><summary>Ghi chú phát hành</summary><div class="md">${md(rel.body)}</div></details>` : ''}
       ${sums ? `<p class="muted"><a href="${esc(sums.browser_download_url)}">SHA256SUMS.txt</a> — kiểm tra: <code>sha256sum -c SHA256SUMS.txt</code></p>` : ''}`;
   }
   return `<article class="card rel" data-plat="${r.platform}">

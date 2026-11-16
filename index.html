@@ -2,11 +2,11 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+  <script>(function(){try{var d=document.documentElement;d.setAttribute('data-theme',localStorage.getItem('theme')||'dark');d.setAttribute('data-accent',localStorage.getItem('accent')||'green');if(localStorage.getItem('fx')==='off')d.setAttribute('data-fx','off');var f=localStorage.getItem('fsize');if(f)d.style.fontSize=f+'%'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kidtomboy (Cherry) — lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, nhạc và công cụ nhỏ.">
+  <meta name="description" content="Kidtomboy (Cherry): lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, công cụ và ghi chú.">
   <meta name="theme-color" content="#05080a">
-  <meta property="og:title" content="Trang chủ · Kidtomboy"><meta property="og:description" content="Kidtomboy (Cherry) — lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, nhạc và công cụ nhỏ."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <meta property="og:title" content="Trang chủ · Kidtomboy"><meta property="og:description" content="Kidtomboy (Cherry): lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, công cụ và ghi chú."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
   <title>Trang chủ · Kidtomboy</title>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
@@ -24,51 +24,44 @@
       <div class="avatar" aria-hidden="true">&gt;_</div>
       <p class="typed">$ whoami<span class="cursor">_</span></p>
       <h1>Kid<span>tomboy</span></h1>
-      <p>Biệt danh Cherry · Đỗ Đình Hiếu · Hải Phòng, Việt Nam.<br>Lập trình viên, nghiên cứu bảo mật và phần mềm. Thích làm những thứ nhỏ nhưng dùng được thật.</p>
+      <div class="typed-roles" id="roles" aria-live="off"></div>
+      <p>Mình là Hiếu, biệt danh <b>Cherry</b>, ở Hải Phòng, Việt Nam. Đây là góc nhỏ của mình: nơi mình để các dự án, game tự viết, công cụ và ghi chú. Mình thích làm những thứ nhỏ nhưng dùng được thật.</p>
       <div class="actions">
         <a class="btn" href="pages/che779.html">Tải Che779</a>
         <a class="btn ghost" href="pages/project.html">Xem dự án</a>
         <a class="btn ghost" href="pages/terminal.html">Mở terminal</a>
       </div>
-      <p class="muted clock" style="margin:1rem 0 0"></p>
-      <p class="muted" style="margin-top:.4rem">Mẹo: nhấn <span class="kbd">Ctrl</span> <span class="kbd">K</span> hoặc <span class="kbd">/</span> để tìm nhanh</p>
-      <div class="socials">
-        <a class="btn ghost" href="https://github.com/Kidtomboy" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn ghost" href="https://kidtomboy.blogspot.com/" target="_blank" rel="noopener">Blog</a>
-        <a class="btn ghost" href="https://t.me/KidtomboyReal" target="_blank" rel="noopener">Telegram</a>
-        <a class="btn ghost" href="https://youtube.com/@Kidtomboy" target="_blank" rel="noopener">YouTube</a>
-      </div>
+      <p class="muted clock" style="margin:1.1rem auto 0"></p>
+      <p class="muted" style="margin-top:.4rem">Mẹo: <span class="kbd">Ctrl</span> <span class="kbd">K</span> tìm nhanh · <span class="kbd">?</span> phím tắt · ⚙ đổi màu giao diện</p>
     </section>
 
-    <h2 class="section-title">🎮 Che779 — giả lập game J2ME <span class="badge">v1.3.0</span> <a href="pages/che779.html" class="muted" style="font-size:.8rem">tải về →</a></h2>
-    <p class="page-sub">Chạy game Java (J2ME) trên Windows, Linux và Android: nhiều tab, proxy theo tab, đồng bộ thao tác, dọn RAM. Bốn repo, mỗi nền tảng một repo.</p>
-    <div class="grid">
-      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Emulator" target="_blank" rel="noopener">
-        <h3>Che779-Emulator <span class="badge">Windows</span></h3><p>Emulator V1 + Remoter: mỗi game một cửa sổ, điều khiển tập trung.</p>
-      </a>
-      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-EmulatorV2" target="_blank" rel="noopener">
-        <h3>Che779-EmulatorV2 <span class="badge">Windows</span></h3><p>Emulator V2: nhiều tab trong một cửa sổ, một tiến trình.</p>
-      </a>
-      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Linux" target="_blank" rel="noopener">
-        <h3>Che779-Linux <span class="badge">Linux</span></h3><p>Gói .deb / .tar.gz: V2 + V1 + Remoter Linux.</p>
-      </a>
-      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Android" target="_blank" rel="noopener">
-        <h3>Che779-Android <span class="badge">Android</span></h3><p>APK, APK clone và script Termux chạy V2.</p>
-      </a>
+    <div class="stats">
+      <div class="stat" id="st-repos"><b>…</b><span>repo công khai</span></div>
+      <div class="stat" id="st-stars"><b>…</b><span>sao nhận được</span></div>
+      <div class="stat" id="st-fol"><b>…</b><span>người theo dõi</span></div>
+      <div class="stat" id="st-dl"><b>…</b><span>lượt tải Che779</span></div>
     </div>
 
-    <h2 class="section-title">📦 Khám phá thêm</h2>
+    <h2 class="section-title">🎮 Che779 — bản phát hành mới nhất <a href="pages/che779.html" class="muted" style="font-size:.8rem">xem tất cả →</a></h2>
+    <p class="page-sub">Bộ giả lập game J2ME mình viết cho Windows, Linux và Android. Mỗi bản có kèm <code>SHA256SUMS.txt</code>.</p>
+    <div class="grid" id="latest"><p class="muted">Đang tải…</p></div>
+
+    <h2 class="section-title">⚡ Vừa cập nhật trên GitHub</h2>
+    <div class="grid" id="recent"><p class="muted">Đang tải…</p></div>
+
+    <h2 class="section-title">📦 Khám phá</h2>
     <div class="grid">
-      <a class="card nav-card lift" href="pages/game.html"><div class="ico">🎮</div><h3>Game</h3><p>Hơn 20 trò chơi chơi ngay trên trình duyệt.</p></a>
-      <a class="card nav-card lift" href="pages/links.html"><div class="ico">🔗</div><h3>Liên kết</h3><p>Facebook, GitHub, Telegram, Discord… mọi nơi tìm thấy mình.</p></a>
-      <a class="card nav-card lift" href="pages/notes.html"><div class="ico">📝</div><h3>Ghi chú</h3><p>Viết Markdown, lưu ngay trên máy, xuất file .md.</p></a>
+      <a class="card nav-card lift" href="pages/game.html"><div class="ico">🎮</div><h3>Game</h3><p>19 trò chơi mình tự viết, chơi ngay trên trình duyệt.</p></a>
+      <a class="card nav-card lift" href="pages/tools.html"><div class="ico">🧰</div><h3>Công cụ</h3><p>Base64, hash, JSON, regex, pomodoro… dùng offline.</p></a>
+      <a class="card nav-card lift" href="pages/notes.html"><div class="ico">📝</div><h3>Ghi chú</h3><p>Viết Markdown, lưu trên máy, xuất file .md.</p></a>
+      <a class="card nav-card lift" href="pages/links.html"><div class="ico">🔗</div><h3>Liên kết</h3><p>Mọi nơi bạn có thể tìm thấy mình.</p></a>
       <a class="card nav-card lift" href="pages/music.html"><div class="ico">🎵</div><h3>Nhạc</h3><p>Trình phát nhạc với playlist và visualizer.</p></a>
-      <a class="card nav-card lift" href="pages/todo.html"><div class="ico">✅</div><h3>Việc cần làm</h3><p>Danh sách việc, lưu ngay trên máy bạn.</p></a>
-      <a class="card nav-card lift" href="pages/search.html"><div class="ico">🔍</div><h3>Tìm kiếm</h3><p>Một ô tìm cho nhiều công cụ, kèm bookmark.</p></a>
+      <a class="card nav-card lift" href="pages/todo.html"><div class="ico">✅</div><h3>Việc cần làm</h3><p>Danh sách việc, lưu ngay trên máy.</p></a>
     </div>
   </main>
-  <script type="module" src="./assets/js/components/clock.js"></script>
-  <script type="module">import { matrix } from "./assets/js/components/matrix.js"; matrix(document.getElementById("matrix"));</script>
   <script type="module" src="assets/js/components/shell.js"></script>
+  <script type="module" src="./assets/js/components/clock.js"></script>
+  <script type="module" src="./assets/js/pages/home.js"></script>
+  <script type="module">import { matrix } from "./assets/js/components/matrix.js"; matrix(document.getElementById("matrix"));</script>
 </body>
 </html>
