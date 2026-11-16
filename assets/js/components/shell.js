@@ -3,9 +3,10 @@ import { getTheme, toggleTheme } from '../core/theme.js';
 
 const ROOT = new URL('../../../', import.meta.url).pathname; // gốc site, đúng cả khi đặt trong thư mục con
 const NAV = [
-  ['index.html', 'Trang chủ'], ['pages/project.html', 'Dự án'], ['pages/game.html', 'Game'],
-  ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'],
-  ['pages/support.html', 'Hỗ trợ'], ['pages/about.html', 'Giới thiệu']
+  ['index.html', 'Trang chủ'], ['pages/project.html', 'Dự án'], ['pages/game.html', 'Game'], ['pages/about.html', 'Giới thiệu']
+];
+const MORE = [
+  ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ']
 ];
 
 function isCurrent(href) {
@@ -20,9 +21,11 @@ function build() {
   header.className = 'site-header';
   header.innerHTML = `
     <div class="bar">
-      <a class="logo" href="${ROOT}index.html"><span aria-hidden="true">🍒</span><b>Kid<span>tomboy</span></b></a>
+      <a class="logo" href="${ROOT}index.html"><span class="p">~/</span>kidtomboy<i>_</i></a>
       <nav class="site-nav" id="site-nav" aria-label="Điều hướng chính">
         ${NAV.map(([h, t]) => `<a href="${ROOT}${h}"${isCurrent(h) ? ' aria-current="page"' : ''}>${t}</a>`).join('')}
+        <div class="more" id="more"><button type="button" aria-haspopup="true" aria-expanded="false">Thêm ▾</button>
+          <div class="more-list">${MORE.map(([h, t]) => `<a href="${ROOT}${h}"${isCurrent(h) ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</div></div>
       </nav>
       <button class="icon-btn" id="theme-btn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện"></button>
       <button class="icon-btn menu-btn" id="menu-btn" aria-label="Mở menu" aria-expanded="false">☰</button>
@@ -30,7 +33,7 @@ function build() {
   document.body.prepend(header);
 
   const themeBtn = header.querySelector('#theme-btn');
-  const paint = () => { themeBtn.textContent = getTheme() === 'dark' ? '☀️' : '🌙'; };
+  const paint = () => { themeBtn.textContent = getTheme() === 'dark' ? '☀' : '☾'; };
   paint();
   themeBtn.addEventListener('click', () => { toggleTheme(); paint(); });
 
@@ -40,12 +43,16 @@ function build() {
     const open = nav.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', String(open));
   });
+  const more = header.querySelector('#more');
+  const moreBtn = more.querySelector('button');
+  moreBtn.addEventListener('click', e => { e.stopPropagation(); const o = more.classList.toggle('open'); moreBtn.setAttribute('aria-expanded', String(o)); });
+  document.addEventListener('click', () => { more.classList.remove('open'); moreBtn.setAttribute('aria-expanded', 'false'); });
   nav.addEventListener('click', e => { if (e.target.closest('a')) nav.classList.remove('open'); });
 
   if (!document.body.hasAttribute('data-no-footer')) {
     const footer = document.createElement('footer');
     footer.className = 'site-footer';
-    footer.innerHTML = `Làm bởi <b>Kidtomboy</b> 🍒 <b>Cherry</b> · <a href="https://github.com/Kidtomboy">GitHub</a>`;
+    footer.innerHTML = `&copy; Kidtomboy (Cherry) · <a href="https://github.com/Kidtomboy">GitHub</a>`;
     document.body.append(footer);
   }
 }
