@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ghi chú Markdown lưu ngay trên trình duyệt của bạn, xuất ra file .md.">
+  <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Ghi chú · Kidtomboy"><meta property="og:description" content="Ghi chú Markdown lưu ngay trên trình duyệt của bạn, xuất ra file .md."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <title>Ghi chú · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&subset=vietnamese&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1 class="page-title">Ghi chú</h1>
+    <p class="page-sub">Viết bằng Markdown, lưu trong trình duyệt của bạn (không gửi đi đâu). Nhớ xuất file nếu cần giữ lâu.</p>
+    <div class="notes-layout">
+      <aside class="card notes-side">
+        <div class="controls-row"><button class="btn" id="n-new" type="button">+ Mới</button><button class="btn ghost" id="n-export" type="button">⬇ .md</button></div>
+        <ul id="n-list" class="n-list"></ul>
+      </aside>
+      <section class="notes-main">
+        <input type="text" id="n-title" placeholder="Tiêu đề" aria-label="Tiêu đề ghi chú">
+        <div class="notes-edit">
+          <textarea id="n-text" placeholder="# Xin chào&#10;Viết gì đó… (hỗ trợ **đậm**, *nghiêng*, `code`, - danh sách, [link](https://...))" aria-label="Nội dung"></textarea>
+          <div id="n-prev" class="card md" aria-label="Xem trước"></div>
+        </div>
+        <button class="btn ghost" id="n-del" type="button">🗑 Xóa ghi chú này</button>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="../assets/js/components/shell.js"></script>
+  <script type="module" src="../assets/js/pages/notes.js"></script>
+</body>
+</html>

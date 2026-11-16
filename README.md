@@ -28,6 +28,7 @@ Cần chạy qua máy chủ (không mở thẳng file) vì dùng ES module và s
 ## Tính năng nổi bật
 
 - **Che779**: trang tải bản phát hành mới nhất của 4 repo, lấy trực tiếp từ GitHub API (có nhớ tạm 10 phút, timeout 8 giây), tự gợi ý theo thiết bị.
+- **Liên kết** (khôi phục từ trang cũ của bạn, viết lại không cần CDN): mạng xã hội chia nhóm + đồng hồ; **Ghi chú** Markdown lưu trên máy, xem trước an toàn, xuất `.md`.
 - **Terminal** tương tác (`help`, `che779`, `projects`, `neofetch`, `open`, `theme`…), Tab gợi ý, ↑/↓ lịch sử.
 - **Command palette**: `Ctrl/⌘ + K` hoặc `/` để nhảy tới trang, game, repo.
 - Nền mưa ký tự ở trang chủ (tự tắt khi bật "giảm chuyển động" hoặc ẩn tab).

@@ -100,6 +100,16 @@ export const SITE = {
    "games chơi"
   ],
   [
+   "pages/links.html",
+   "Liên kết (mạng xã hội)",
+   "links social facebook telegram discord github liên hệ"
+  ],
+  [
+   "pages/notes.html",
+   "Ghi chú",
+   "notes markdown note"
+  ],
+  [
    "pages/terminal.html",
    "Terminal",
    "shell cli lệnh"

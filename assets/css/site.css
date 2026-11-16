@@ -235,3 +235,26 @@ dialog.palette::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(3px)}
 .term-row{display:flex;gap:.5rem;align-items:center}
 .term-row input{flex:1;background:transparent;border:0;padding:0;font:inherit;color:var(--text-primary)}
 .term-row input:focus{outline:0}
+
+/* ---- Liên kết & ghi chú ---- */
+.clock{font-family:var(--font-mono);color:var(--accent);margin-left:.5rem}
+.links-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.link-list{display:grid;gap:.4rem}
+.link-list a{display:flex;align-items:baseline;gap:.5rem;padding:.55rem .8rem;border:1px solid var(--card-border);border-radius:var(--radius-sm);font:600 .85rem var(--font-mono);transition:all var(--transition-speed)}
+.link-list a small{margin-left:auto;color:var(--text-secondary);font-weight:400;font-family:var(--font-sans)}
+.link-list a:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);transform:translateX(3px)}
+.notes-layout{display:grid;grid-template-columns:230px 1fr;gap:1rem;align-items:start}
+@media (max-width:760px){.notes-layout{grid-template-columns:1fr}}
+.notes-side .controls-row{margin-bottom:.7rem}
+.n-list{list-style:none;display:grid;gap:.3rem;max-height:60vh;overflow:auto}
+.n-list li{display:flex;flex-direction:column;padding:.5rem .7rem;border-radius:var(--radius-sm);cursor:pointer;font-weight:600;word-break:break-word}
+.n-list li small{color:var(--text-secondary);font-weight:400}
+.n-list li:hover{background:var(--accent-soft)}.n-list li[aria-current="true"]{background:var(--accent);color:var(--bg-primary)}.n-list li[aria-current="true"] small{color:inherit}
+.notes-main{display:grid;gap:.7rem}
+#n-title{font:700 1.1rem var(--font-mono)}
+.notes-edit{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+@media (max-width:900px){.notes-edit{grid-template-columns:1fr}}
+#n-text{min-height:340px;resize:vertical;font:.9rem/1.6 var(--font-mono);width:100%}
+.md{min-height:340px;overflow:auto}
+.md h2,.md h3,.md h4{font-family:var(--font-mono);margin:.6rem 0 .3rem;color:var(--accent)}
+.md p{margin:.3rem 0}.md ul{margin:.3rem 0 .3rem 1.2rem}.md a{color:var(--cyan);text-decoration:underline}

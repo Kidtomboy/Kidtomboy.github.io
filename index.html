@@ -29,7 +29,8 @@
         <a class="btn ghost" href="pages/project.html">Xem dự án</a>
         <a class="btn ghost" href="pages/terminal.html">Mở terminal</a>
       </div>
-      <p class="muted" style="margin-top:1rem">Mẹo: nhấn <span class="kbd">Ctrl</span> <span class="kbd">K</span> hoặc <span class="kbd">/</span> để tìm nhanh</p>
+      <p class="muted clock" style="margin:1rem 0 0"></p>
+      <p class="muted" style="margin-top:.4rem">Mẹo: nhấn <span class="kbd">Ctrl</span> <span class="kbd">K</span> hoặc <span class="kbd">/</span> để tìm nhanh</p>
       <div class="socials">
         <a class="btn ghost" href="https://github.com/Kidtomboy" target="_blank" rel="noopener">GitHub</a>
         <a class="btn ghost" href="https://kidtomboy.blogspot.com/" target="_blank" rel="noopener">Blog</a>
@@ -58,11 +59,14 @@
     <h2 class="section-title">📦 Khám phá thêm</h2>
     <div class="grid">
       <a class="card nav-card lift" href="pages/game.html"><div class="ico">🎮</div><h3>Game</h3><p>Hơn 20 trò chơi chơi ngay trên trình duyệt.</p></a>
+      <a class="card nav-card lift" href="pages/links.html"><div class="ico">🔗</div><h3>Liên kết</h3><p>Facebook, GitHub, Telegram, Discord… mọi nơi tìm thấy mình.</p></a>
+      <a class="card nav-card lift" href="pages/notes.html"><div class="ico">📝</div><h3>Ghi chú</h3><p>Viết Markdown, lưu ngay trên máy, xuất file .md.</p></a>
       <a class="card nav-card lift" href="pages/music.html"><div class="ico">🎵</div><h3>Nhạc</h3><p>Trình phát nhạc với playlist và visualizer.</p></a>
       <a class="card nav-card lift" href="pages/todo.html"><div class="ico">✅</div><h3>Việc cần làm</h3><p>Danh sách việc, lưu ngay trên máy bạn.</p></a>
       <a class="card nav-card lift" href="pages/search.html"><div class="ico">🔍</div><h3>Tìm kiếm</h3><p>Một ô tìm cho nhiều công cụ, kèm bookmark.</p></a>
     </div>
   </main>
+  <script type="module" src="./assets/js/components/clock.js"></script>
   <script type="module">import { matrix } from "./assets/js/components/matrix.js"; matrix(document.getElementById("matrix"));</script>
   <script type="module" src="assets/js/components/shell.js"></script>
 </body>
