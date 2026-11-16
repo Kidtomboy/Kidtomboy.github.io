@@ -1,23 +1,19 @@
-const CACHE_NAME = 'kidtomboy-v1.0.0';
-const urlsToCache = [
-  '/', '/index.html', '/home.html',
-  '/assets/css/global.css', '/assets/css/theme-light.css', '/assets/css/theme-dark.css',
-  '/assets/css/animations.css', '/assets/css/components.css',
-  '/assets/js/core/theme.js', '/assets/js/core/storage.js',
-  '/assets/js/core/router.js', '/assets/js/core/state.js',
-  '/assets/js/core/audio-engine.js', '/assets/js/core/music-player.js',
-  '/assets/js/core/anti-debug.js', '/assets/js/core/devMode.js',
-  '/config/secrets.js', '/config/constants.js', '/config/settings.js'
-];
+// Service worker: lưu đệm khung site, mạng trước – lỗi mạng thì dùng bản lưu.
+const CACHE = 'kidtomboy-v2';
+const SHELL = ['index.html', 'assets/css/site.css', 'assets/icon.svg', 'assets/js/core/theme.js', 'assets/js/components/shell.js'];
 
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-  );
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
 });
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
-  );
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
+  e.respondWith(fetch(req).then(res => {
+    const copy = res.clone();
+    caches.open(CACHE).then(c => c.put(req, copy));
+    return res;
+  }).catch(() => caches.match(req)));
 });

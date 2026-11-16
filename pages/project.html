@@ -3,41 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dự án</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="../assets/css/project.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <meta name="description" content="Các dự án của Kidtomboy, gồm bộ giả lập Che779 và các repo trên GitHub.">
+  <meta name="theme-color" content="#e8467c">
+  <title>Dự án · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <header-bar></header-bar>
-  <main class="project-container">
-    <section class="che779-featured" aria-labelledby="che779-title">
-      <h2 id="che779-title">🎮 Che779 — giả lập game J2ME (v1.3.0)</h2>
-      <p>Chạy game Java (J2ME) trên Windows, Linux và Android: nhiều tab, proxy theo tab, đồng bộ thao tác, dọn RAM. Mỗi bản phát hành có kèm <code>SHA256SUMS.txt</code>.</p>
-      <div class="project-grid">
-        <div class="project-card"><h3><a href="https://github.com/Kidtomboy/Che779-Emulator" target="_blank" rel="noopener">Che779-Emulator</a></h3><p>Windows · Emulator V1 + Remoter: mỗi game một cửa sổ, điều khiển tập trung.</p></div>
-        <div class="project-card"><h3><a href="https://github.com/Kidtomboy/Che779-EmulatorV2" target="_blank" rel="noopener">Che779-EmulatorV2</a></h3><p>Windows · Emulator V2: nhiều tab trong một cửa sổ.</p></div>
-        <div class="project-card"><h3><a href="https://github.com/Kidtomboy/Che779-Linux" target="_blank" rel="noopener">Che779-Linux</a></h3><p>Linux · gói .deb / .tar.gz: V2 + V1 + Remoter Linux.</p></div>
-        <div class="project-card"><h3><a href="https://github.com/Kidtomboy/Che779-Android" target="_blank" rel="noopener">Che779-Android</a></h3><p>Android · APK, APK clone và script Termux chạy V2.</p></div>
-      </div>
-    </section>
-    <h2 class="all-projects-title">Tất cả dự án</h2>
-    <div class="project-controls">
-      <input type="text" id="project-search" placeholder="Tìm dự án...">
-      <select id="language-filter">
-        <option value="">Tất cả ngôn ngữ</option>
-      </select>
+  <main class="container">
+    <h1 class="page-title">Dự án</h1>
+    <p class="page-sub">Dự án chính là <b>Che779</b>. Bên dưới là toàn bộ repo công khai, lấy trực tiếp từ GitHub.</p>
+    <h2 class="section-title" style="margin-top:0">🎮 Che779 <span class="badge">v1.3.0</span></h2>
+    <div class="grid">
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Emulator" target="_blank" rel="noopener">
+        <h3>Che779-Emulator <span class="badge">Windows</span></h3><p>Emulator V1 + Remoter: mỗi game một cửa sổ, điều khiển tập trung.</p>
+      </a>
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-EmulatorV2" target="_blank" rel="noopener">
+        <h3>Che779-EmulatorV2 <span class="badge">Windows</span></h3><p>Emulator V2: nhiều tab trong một cửa sổ, một tiến trình.</p>
+      </a>
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Linux" target="_blank" rel="noopener">
+        <h3>Che779-Linux <span class="badge">Linux</span></h3><p>Gói .deb / .tar.gz: V2 + V1 + Remoter Linux.</p>
+      </a>
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Android" target="_blank" rel="noopener">
+        <h3>Che779-Android <span class="badge">Android</span></h3><p>APK, APK clone và script Termux chạy V2.</p>
+      </a>
     </div>
-    <div class="project-grid" id="project-list">
-      <!-- Render từ GitHub API -->
+    <h2 class="section-title">📂 Tất cả repo</h2>
+    <div class="controls-row">
+      <input type="search" id="project-search" placeholder="Tìm dự án…" aria-label="Tìm dự án">
+      <select id="language-filter" aria-label="Lọc theo ngôn ngữ"><option value="">Tất cả ngôn ngữ</option></select>
     </div>
+    <div class="grid" id="project-list" aria-live="polite"><p>Đang tải…</p></div>
   </main>
-  <back-button></back-button>
-  <script type="module" src="../assets/js/components/header-bar.js"></script>
-  <script type="module" src="../assets/js/components/back-button.js"></script>
+  <script type="module" src="../assets/js/components/shell.js"></script>
   <script type="module" src="../assets/js/pages/project.js"></script>
 </body>
 </html>

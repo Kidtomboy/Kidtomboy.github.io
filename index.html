@@ -3,88 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kidtomboy - Nhà phát triển trang web">
-  <title>Kidtomboy | Chào mừng</title>
-  <link rel="stylesheet" href="assets/css/global.css">
-  <link rel="stylesheet" href="assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="assets/css/animations.css">
-  <link rel="stylesheet" href="assets/css/landing.css">
+  <meta name="description" content="Kidtomboy (Cherry) — lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, nhạc và công cụ nhỏ.">
+  <meta name="theme-color" content="#e8467c">
+  <title>Trang chủ · Kidtomboy</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0f172a">
+  <link rel="stylesheet" href="assets/css/site.css">
   <script type="module" src="assets/js/core/theme.js"></script>
 </head>
-<body class="landing-page">
-  <!-- Nền hiệu ứng hạt -->
-  <canvas id="particles"></canvas>
-
-  <div class="landing-container">
-    <!-- Avatar CSS only -->
-    <div class="avatar">
-      <div class="avatar-circle">
-        <span class="avatar-letter">K</span>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="avatar" aria-hidden="true">🍒</div>
+      <h1>Xin chào, mình là <span>Cherry</span></h1>
+      <p>Kidtomboy · Đỗ Đình Hiếu · Hải Phòng, Việt Nam.<br>Lập trình viên, nghiên cứu bảo mật và phần mềm. Thích làm những thứ nhỏ nhưng dùng được thật.</p>
+      <div class="actions">
+        <a class="btn" href="pages/project.html">Xem dự án</a>
+        <a class="btn ghost" href="pages/about.html">Về mình</a>
       </div>
-      <div class="avatar-ring"></div>
-    </div>
-
-    <!-- Tên và tagline -->
-    <h1 class="name">Kidtomboy</h1>
-    <p class="tagline">Nhà phát triển trang web</p>
-
-    <!-- Mạng xã hội (CSS icons) -->
-    <div class="social-links">
-      <a href="https://github.com/Kidtomboy" target="_blank" rel="noopener" class="social-icon github" aria-label="GitHub">
-        <span class="icon-github"></span>
-      </a>
-      <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-icon facebook" aria-label="Facebook">
-        <span class="icon-facebook"></span>
-      </a>
-      <a href="https://youtube.com/" target="_blank" rel="noopener" class="social-icon youtube" aria-label="YouTube">
-        <span class="icon-youtube"></span>
-      </a>
-    </div>
-
-    <!-- QR Ngân hàng (placeholder CSS) -->
-    <div class="qr-bank">
-      <div class="qr-placeholder">
-        <span>QR Ngân hàng</span>
-        <small>(thêm ảnh qr-bank.png)</small>
+      <div class="socials">
+        <a class="btn ghost" href="https://github.com/Kidtomboy" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://kidtomboy.blogspot.com/" target="_blank" rel="noopener">Blog</a>
+        <a class="btn ghost" href="https://t.me/KidtomboyReal" target="_blank" rel="noopener">Telegram</a>
+        <a class="btn ghost" href="https://youtube.com/@Kidtomboy" target="_blank" rel="noopener">YouTube</a>
       </div>
+    </section>
+
+    <h2 class="section-title">🎮 Che779 — giả lập game J2ME <span class="badge">v1.3.0</span></h2>
+    <p class="page-sub">Chạy game Java (J2ME) trên Windows, Linux và Android: nhiều tab, proxy theo tab, đồng bộ thao tác, dọn RAM. Bốn repo, mỗi nền tảng một repo.</p>
+    <div class="grid">
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Emulator" target="_blank" rel="noopener">
+        <h3>Che779-Emulator <span class="badge">Windows</span></h3><p>Emulator V1 + Remoter: mỗi game một cửa sổ, điều khiển tập trung.</p>
+      </a>
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-EmulatorV2" target="_blank" rel="noopener">
+        <h3>Che779-EmulatorV2 <span class="badge">Windows</span></h3><p>Emulator V2: nhiều tab trong một cửa sổ, một tiến trình.</p>
+      </a>
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Linux" target="_blank" rel="noopener">
+        <h3>Che779-Linux <span class="badge">Linux</span></h3><p>Gói .deb / .tar.gz: V2 + V1 + Remoter Linux.</p>
+      </a>
+      <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Android" target="_blank" rel="noopener">
+        <h3>Che779-Android <span class="badge">Android</span></h3><p>APK, APK clone và script Termux chạy V2.</p>
+      </a>
     </div>
 
-    <!-- Nút vào Trang Chủ -->
-    <a href="home.html" class="btn-enter">
-      <span>Vào Trang Chủ</span>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Nhạc nền (tự động phát nếu được phép) -->
-  <audio id="bg-music" loop preload="none" src="assets/sound/background.mp3"></audio>
-  <button id="toggle-music" class="music-toggle" aria-label="Bật/tắt nhạc">🔇</button>
-
-  <script type="module">
-    // Hiệu ứng hạt nền
-    import { initParticles } from './assets/js/pages/landing.js';
-    initParticles(document.getElementById('particles'));
-
-    // Xử lý nhạc nền
-    const bgMusic = document.getElementById('bg-music');
-    const toggleBtn = document.getElementById('toggle-music');
-    let musicPlaying = false;
-
-    toggleBtn.addEventListener('click', () => {
-      if (musicPlaying) {
-        bgMusic.pause();
-        toggleBtn.textContent = '🔇';
-      } else {
-        bgMusic.play().catch(() => {});
-        toggleBtn.textContent = '🔊';
-      }
-      musicPlaying = !musicPlaying;
-    });
-  </script>
+    <h2 class="section-title">📦 Khám phá thêm</h2>
+    <div class="grid">
+      <a class="card nav-card lift" href="pages/game.html"><div class="ico">🎮</div><h3>Game</h3><p>Hơn 20 trò chơi chơi ngay trên trình duyệt.</p></a>
+      <a class="card nav-card lift" href="pages/music.html"><div class="ico">🎵</div><h3>Nhạc</h3><p>Trình phát nhạc với playlist và visualizer.</p></a>
+      <a class="card nav-card lift" href="pages/todo.html"><div class="ico">✅</div><h3>Việc cần làm</h3><p>Danh sách việc, lưu ngay trên máy bạn.</p></a>
+      <a class="card nav-card lift" href="pages/search.html"><div class="ico">🔍</div><h3>Tìm kiếm</h3><p>Một ô tìm cho nhiều công cụ, kèm bookmark.</p></a>
+    </div>
+  </main>
+  <script type="module" src="assets/js/components/shell.js"></script>
 </body>
 </html>

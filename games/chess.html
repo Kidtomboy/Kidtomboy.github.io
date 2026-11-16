@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Chess</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="../assets/css/game-common.css">
   <style>
     body { margin: 0; }
     #gameContainer {
@@ -58,6 +54,7 @@
       font-size: 1.2rem;
       font-weight: bold;
     }
+    @media (max-width: 540px) { .board { zoom: 0.68; } }
     .board {
       display: grid;
       grid-template-columns: repeat(8, 60px);
@@ -136,6 +133,8 @@
       }
     }
   </style>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
@@ -168,5 +167,6 @@
       💡 <strong>Mẹo:</strong> Để khôi phục bàn cờ đầy đủ quân (huỷ mọi chấp quân), hãy <strong>tải lại trang (F5)</strong>.
     </p>
   <script type="module" src="../assets/js/games/board/chess.js"></script>
+  <script type="module" src="../assets/js/components/shell.js"></script>
 </body>
 </html>

@@ -3,38 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hỗ trợ</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="../assets/css/support.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <meta name="description" content="Câu hỏi thường gặp và cách liên hệ, báo lỗi.">
+  <meta name="theme-color" content="#e8467c">
+  <title>Hỗ trợ · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <header-bar></header-bar>
-  <main class="support-container">
-    <section class="faq">
-      <h2>Câu hỏi thường gặp</h2>
-      <!-- Các câu hỏi động -->
-    </section>
-    <section class="contact-form">
-      <h2>Liên hệ</h2>
-      <form id="contactForm">
-        <input type="text" placeholder="Tên" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Nội dung"></textarea>
-        <button type="submit">Gửi</button>
-      </form>
-    </section>
-    <div class="social-direct">
-      <a href="mailto:email@example.com">📧 Email</a>
-      <a href="https://github.com/Kidtomboy">🐙 GitHub</a>
+  <main class="container" style="max-width:760px">
+    <h1 class="page-title">Hỗ trợ</h1>
+    <p class="page-sub">Câu hỏi thường gặp và cách liên hệ.</p>
+    <section class="faq" id="faq"></section>
+    <h2 class="section-title">Liên hệ & báo lỗi</h2>
+    <div class="grid">
+      <a class="card lift" href="https://github.com/Kidtomboy/Che779-Emulator/issues/new/choose" target="_blank" rel="noopener"><h3>🐞 Báo lỗi Che779</h3><p style="color:var(--text-secondary)">Mở Issue ở repo tương ứng, ghi phiên bản, hệ điều hành và Java.</p></a>
+      <a class="card lift" href="https://t.me/KidtomboyReal" target="_blank" rel="noopener"><h3>✈️ Telegram</h3><p style="color:var(--text-secondary)">Nhắn trực tiếp.</p></a>
+      <a class="card lift" href="https://discord.gg/cM8eE93S7M" target="_blank" rel="noopener"><h3>💬 Discord</h3><p style="color:var(--text-secondary)">Vào cộng đồng.</p></a>
     </div>
   </main>
-  <back-button></back-button>
-  <script type="module" src="../assets/js/components/header-bar.js"></script>
-  <script type="module" src="../assets/js/components/back-button.js"></script>
+  <script type="module" src="../assets/js/components/shell.js"></script>
   <script type="module" src="../assets/js/pages/support.js"></script>
 </body>
 </html>

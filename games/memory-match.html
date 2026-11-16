@@ -4,16 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Memory Match</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="../assets/css/game-common.css">
   <style>
     .game-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 80px;
+      margin-top: 0;
     }
     .settings {
       margin-bottom: 1rem;
@@ -99,6 +95,8 @@
       .card { width: 55px; height: 55px; font-size: 1.5rem; }
     }
   </style>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
@@ -124,5 +122,6 @@
     </div>
   </div>
   <script type="module" src="../assets/js/games/puzzle/memory-match.js"></script>
+  <script type="module" src="../assets/js/components/shell.js"></script>
 </body>
 </html>

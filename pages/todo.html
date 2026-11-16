@@ -3,27 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo App</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="../assets/css/todo.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <meta name="description" content="Danh sách việc cần làm, lưu ngay trên máy bạn.">
+  <meta name="theme-color" content="#e8467c">
+  <title>Việc cần làm · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <header-bar></header-bar>
   <main class="todo-container">
-    <h1>✅ Việc cần làm</h1>
+    <h1 class="page-title">✅ Việc cần làm</h1>
+    <p class="page-sub">Dữ liệu lưu trong trình duyệt của bạn, không gửi đi đâu.</p>
     <div class="todo-controls">
-      <input type="text" id="taskInput" placeholder="Thêm công việc mới...">
-      <select id="prioritySelect">
-        <option value="low">Thấp</option>
-        <option value="medium" selected>Trung bình</option>
-        <option value="high">Cao</option>
+      <input type="text" id="taskInput" placeholder="Thêm công việc mới…" aria-label="Công việc">
+      <select id="prioritySelect" aria-label="Mức ưu tiên">
+        <option value="low">Thấp</option><option value="medium" selected>Trung bình</option><option value="high">Cao</option>
       </select>
-      <input type="date" id="deadlineInput">
-      <input type="text" id="tagInput" placeholder="Tag (cách nhau dấu phẩy)">
+      <input type="date" id="deadlineInput" aria-label="Hạn">
+      <input type="text" id="tagInput" placeholder="Tag (cách nhau dấu phẩy)" aria-label="Tag">
       <button id="addTaskBtn">➕ Thêm</button>
     </div>
     <div class="filter-bar">
@@ -31,15 +29,13 @@
       <button class="filter-btn" data-filter="active">Đang làm</button>
       <button class="filter-btn" data-filter="completed">Hoàn thành</button>
       <button class="filter-btn" data-filter="archived">Lưu trữ</button>
-      <input type="text" id="searchInput" placeholder="🔍 Tìm kiếm...">
+      <input type="text" id="searchInput" placeholder="🔍 Tìm…" aria-label="Tìm việc">
       <button id="exportBtn">📤 Export</button>
       <button id="importBtn">📥 Import</button>
     </div>
     <ul class="task-list" id="taskList"></ul>
   </main>
-  <back-button></back-button>
-  <script type="module" src="../assets/js/components/header-bar.js"></script>
-  <script type="module" src="../assets/js/components/back-button.js"></script>
+  <script type="module" src="../assets/js/components/shell.js"></script>
   <script type="module" src="../assets/js/pages/todo.js"></script>
 </body>
 </html>

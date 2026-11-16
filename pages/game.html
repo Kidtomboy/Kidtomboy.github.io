@@ -3,32 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trung tâm Game</title>
-  <link rel="stylesheet" href="../assets/css/global.css">
-  <link rel="stylesheet" href="../assets/css/theme-light.css" id="theme-light">
-  <link rel="stylesheet" href="../assets/css/theme-dark.css" id="theme-dark" disabled>
-  <link rel="stylesheet" href="../assets/css/game-hub.css">
-  <link rel="stylesheet" href="../assets/css/components.css">
+  <meta name="description" content="Bộ sưu tập game chơi ngay trên trình duyệt.">
+  <meta name="theme-color" content="#e8467c">
+  <title>Game · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="stylesheet" href="../assets/css/site.css">
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <header-bar></header-bar>
   <main class="game-hub">
-    <h1>🎮 Bộ sưu tập game</h1>
-    <div class="category" data-category="arcade">
-      <h2>Arcade</h2>
-      <div class="game-grid">
-        <a href="../games/snake.html" class="game-card">🐍 Snake</a>
-        <a href="../games/tetris.html" class="game-card">🧱 Tetris</a>
-        <a href="../games/flappy-bird.html" class="game-card">🐦 Flappy Bird</a>
-        <a href="../games/breakout.html" class="game-card">🧱 Breakout</a>
-        <a href="../games/dino-runner.html" class="game-card">🦖 Dino Runner</a>
-      </div>
-    </div>
-    <!-- Các danh mục khác tương tự -->
+    <h1 class="page-title">🎮 Bộ sưu tập game</h1>
+    <p class="page-sub">Chơi ngay trên trình duyệt, điểm cao nhất được lưu trên máy bạn.</p>
+    <div class="category"><h2>Arcade</h2><div class="game-grid">
+      <a href="../games/snake.html" class="game-card">🐍 Snake</a>
+      <a href="../games/tetris.html" class="game-card">🧱 Tetris</a>
+      <a href="../games/flappy-bird.html" class="game-card">🐦 Flappy Bird</a>
+      <a href="../games/breakout.html" class="game-card">🧱 Breakout</a>
+      <a href="../games/dino-runner.html" class="game-card">🦖 Dino Runner</a>
+    </div></div>
+    <div class="category"><h2>Puzzle</h2><div class="game-grid">
+      <a href="../games/2048.html" class="game-card">🔢 2048</a>
+      <a href="../games/minesweeper.html" class="game-card">💣 Minesweeper</a>
+      <a href="../games/memory-match.html" class="game-card">🧠 Memory Match</a>
+      <a href="../games/sudoku.html" class="game-card">🧩 Sudoku</a>
+    </div></div>
+    <div class="category"><h2>Bàn cờ</h2><div class="game-grid">
+      <a href="../games/chess.html" class="game-card">♟ Chess</a>
+      <a href="../games/checkers.html" class="game-card">⚫ Checkers</a>
+      <a href="../games/connect-four.html" class="game-card">🔴 Connect Four</a>
+      <a href="../games/tic-tac-toe.html" class="game-card">🎯 Tic Tac Toe</a>
+    </div></div>
+    <div class="category"><h2>Bài</h2><div class="game-grid">
+      <a href="../games/solitaire.html" class="game-card">🃏 Solitaire</a>
+      <a href="../games/freecell.html" class="game-card">🃏 FreeCell</a>
+    </div></div>
+    <div class="category"><h2>Chữ & học</h2><div class="game-grid">
+      <a href="../games/hangman.html" class="game-card">📝 Hangman</a>
+      <a href="../games/math-quiz.html" class="game-card">📐 Math Quiz</a>
+    </div></div>
+    <div class="category"><h2>Thể thao</h2><div class="game-grid">
+      <a href="../games/pool.html" class="game-card">🎱 Pool</a>
+      <a href="../games/archery.html" class="game-card">🏹 Archery</a>
+    </div></div>
   </main>
-  <back-button></back-button>
-  <script type="module" src="../assets/js/components/header-bar.js"></script>
-  <script type="module" src="../assets/js/components/back-button.js"></script>
+  <script type="module" src="../assets/js/components/shell.js"></script>
 </body>
 </html>
