@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kidtomboy (Cherry) — lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, nhạc và công cụ nhỏ.">
   <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Trang chủ · Kidtomboy"><meta property="og:description" content="Kidtomboy (Cherry) — lập trình viên, nghiên cứu bảo mật và phần mềm. Dự án Che779, game, nhạc và công cụ nhỏ."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
   <title>Trang chủ · Kidtomboy</title>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.json">
@@ -13,18 +14,22 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&subset=vietnamese&display=swap">
   <link rel="stylesheet" href="assets/css/site.css">
   <script type="module" src="assets/js/core/theme.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Đỗ Đình Hiếu","alternateName":["Kidtomboy","Cherry"],"url":"https://kidtomboy.github.io/","sameAs":["https://github.com/Kidtomboy","https://t.me/KidtomboyReal","https://kidtomboy.blogspot.com/"],"jobTitle":"Lập trình viên"}</script>
 </head>
 <body>
   <main class="container">
     <section class="hero">
+      <canvas id="matrix" aria-hidden="true"></canvas>
       <div class="avatar" aria-hidden="true">&gt;_</div>
       <p class="typed">$ whoami<span class="cursor">_</span></p>
       <h1>Kid<span>tomboy</span></h1>
       <p>Biệt danh Cherry · Đỗ Đình Hiếu · Hải Phòng, Việt Nam.<br>Lập trình viên, nghiên cứu bảo mật và phần mềm. Thích làm những thứ nhỏ nhưng dùng được thật.</p>
       <div class="actions">
-        <a class="btn" href="pages/project.html">Xem dự án</a>
-        <a class="btn ghost" href="pages/about.html">Về mình</a>
+        <a class="btn" href="pages/che779.html">Tải Che779</a>
+        <a class="btn ghost" href="pages/project.html">Xem dự án</a>
+        <a class="btn ghost" href="pages/terminal.html">Mở terminal</a>
       </div>
+      <p class="muted" style="margin-top:1rem">Mẹo: nhấn <span class="kbd">Ctrl</span> <span class="kbd">K</span> hoặc <span class="kbd">/</span> để tìm nhanh</p>
       <div class="socials">
         <a class="btn ghost" href="https://github.com/Kidtomboy" target="_blank" rel="noopener">GitHub</a>
         <a class="btn ghost" href="https://kidtomboy.blogspot.com/" target="_blank" rel="noopener">Blog</a>
@@ -33,7 +38,7 @@
       </div>
     </section>
 
-    <h2 class="section-title">🎮 Che779 — giả lập game J2ME <span class="badge">v1.3.0</span></h2>
+    <h2 class="section-title">🎮 Che779 — giả lập game J2ME <span class="badge">v1.3.0</span> <a href="pages/che779.html" class="muted" style="font-size:.8rem">tải về →</a></h2>
     <p class="page-sub">Chạy game Java (J2ME) trên Windows, Linux và Android: nhiều tab, proxy theo tab, đồng bộ thao tác, dọn RAM. Bốn repo, mỗi nền tảng một repo.</p>
     <div class="grid">
       <a class="card che-card lift" href="https://github.com/Kidtomboy/Che779-Emulator" target="_blank" rel="noopener">
@@ -58,6 +63,7 @@
       <a class="card nav-card lift" href="pages/search.html"><div class="ico">🔍</div><h3>Tìm kiếm</h3><p>Một ô tìm cho nhiều công cụ, kèm bookmark.</p></a>
     </div>
   </main>
+  <script type="module">import { matrix } from "./assets/js/components/matrix.js"; matrix(document.getElementById("matrix"));</script>
   <script type="module" src="assets/js/components/shell.js"></script>
 </body>
 </html>

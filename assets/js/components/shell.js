@@ -1,12 +1,13 @@
 // Khung chung: header, menu di động, nút đổi giao diện, footer.
 import { getTheme, toggleTheme } from '../core/theme.js';
+import { openPalette } from './palette.js';
 
 const ROOT = new URL('../../../', import.meta.url).pathname; // gốc site, đúng cả khi đặt trong thư mục con
 const NAV = [
-  ['index.html', 'Trang chủ'], ['pages/project.html', 'Dự án'], ['pages/game.html', 'Game'], ['pages/about.html', 'Giới thiệu']
+  ['index.html', 'Trang chủ'], ['pages/che779.html', 'Che779'], ['pages/project.html', 'Dự án'], ['pages/game.html', 'Game'], ['pages/about.html', 'Giới thiệu']
 ];
 const MORE = [
-  ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ']
+  ['pages/terminal.html', 'Terminal'], ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ']
 ];
 
 function isCurrent(href) {
@@ -27,11 +28,15 @@ function build() {
         <div class="more" id="more"><button type="button" aria-haspopup="true" aria-expanded="false">Thêm ▾</button>
           <div class="more-list">${MORE.map(([h, t]) => `<a href="${ROOT}${h}"${isCurrent(h) ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</div></div>
       </nav>
+      <button class="icon-btn" id="search-btn" aria-label="Tìm nhanh (Ctrl+K)" title="Tìm nhanh (Ctrl+K)">⌕</button>
       <button class="icon-btn" id="theme-btn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện"></button>
       <button class="icon-btn menu-btn" id="menu-btn" aria-label="Mở menu" aria-expanded="false">☰</button>
     </div>`;
   document.body.prepend(header);
 
+  header.querySelector('#search-btn').addEventListener('click', openPalette);
+  const skip = document.createElement('a'); skip.className = 'skip'; skip.href = '#main'; skip.textContent = 'Bỏ qua menu'; document.body.prepend(skip);
+  const mainEl = document.querySelector('main'); if (mainEl && !mainEl.id) mainEl.id = 'main';
   const themeBtn = header.querySelector('#theme-btn');
   const paint = () => { themeBtn.textContent = getTheme() === 'dark' ? '☀' : '☾'; };
   paint();

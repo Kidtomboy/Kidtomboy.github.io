@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terminal tương tác trên trình duyệt: xem thông tin, dự án Che779 và mở trang bằng dòng lệnh.">
+  <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Terminal · Kidtomboy"><meta property="og:description" content="Terminal tương tác trên trình duyệt: xem thông tin, dự án Che779 và mở trang bằng dòng lệnh."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <title>Terminal · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&subset=vietnamese&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1 class="page-title">Terminal</h1>
+    <p class="page-sub">Chơi bằng dòng lệnh cho vui. Gõ <code>help</code>, <code>che779</code>, <code>neofetch</code>…</p>
+    <div class="term-win">
+      <div class="term-bar"><i></i><i></i><i></i><span>kid@tomboy: ~</span></div>
+      <div id="term" role="log" aria-live="polite">
+        <div id="out"></div>
+        <div class="term-row"><span class="pr">kid@tomboy:~$</span><input id="in" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Nhập lệnh"></div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="../assets/js/components/shell.js"></script>
+  <script type="module" src="../assets/js/pages/terminal.js"></script>
+</body>
+</html>

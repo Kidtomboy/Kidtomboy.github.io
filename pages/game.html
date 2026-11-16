@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Bộ sưu tập game chơi ngay trên trình duyệt.">
   <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Game · Kidtomboy"><meta property="og:description" content="Bộ sưu tập game chơi ngay trên trình duyệt."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
   <title>Game · Kidtomboy</title>
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="../manifest.json">
@@ -18,6 +19,7 @@
   <main class="game-hub">
     <h1 class="page-title">🎮 Bộ sưu tập game</h1>
     <p class="page-sub">Chơi ngay trên trình duyệt, điểm cao nhất được lưu trên máy bạn.</p>
+    <div class="controls-row"><input type="search" id="game-filter" placeholder="Lọc game…" aria-label="Lọc game"><span class="muted" id="game-count"></span></div>
     <div class="category"><h2>Arcade</h2><div class="game-grid">
       <a href="../games/snake.html" class="game-card">🐍 Snake</a>
       <a href="../games/tetris.html" class="game-card">🧱 Tetris</a>
@@ -51,5 +53,11 @@
     </div></div>
   </main>
   <script type="module" src="../assets/js/components/shell.js"></script>
+  <script>
+    const f=document.getElementById("game-filter"),c=document.getElementById("game-count");
+    const norm=x=>x.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+    const run=()=>{const q=norm(f.value.trim());let n=0;document.querySelectorAll(".game-card").forEach(a=>{const ok=!q||norm(a.textContent).includes(q);a.hidden=!ok;if(ok)n++});document.querySelectorAll(".category").forEach(e=>e.hidden=!e.querySelector(".game-card:not([hidden])"));c.textContent=n+" game"};
+    f.addEventListener("input",run);run();
+  </script>
 </body>
 </html>

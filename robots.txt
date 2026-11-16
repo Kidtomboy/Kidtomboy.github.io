@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kidtomboy.github.io/sitemap.xml

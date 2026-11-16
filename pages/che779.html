@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tải Che779: giả lập game J2ME cho Windows, Linux và Android. Bản phát hành mới nhất lấy trực tiếp từ GitHub.">
+  <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Che779 · Kidtomboy"><meta property="og:description" content="Tải Che779: giả lập game J2ME cho Windows, Linux và Android. Bản phát hành mới nhất lấy trực tiếp từ GitHub."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <title>Che779 · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&subset=vietnamese&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1 class="page-title">🎮 Che779 <span class="badge">J2ME</span></h1>
+    <p class="page-sub">Giả lập game Java (J2ME) cho <b>Windows, Linux và Android</b>: nhiều tab, proxy theo tab, đồng bộ thao tác, dọn RAM. Dựa trên MicroEmulator 3.0.0 và J2ME Loader 1.8.2. Bản phát hành bên dưới lấy trực tiếp từ GitHub.</p>
+
+    <h2 class="section-title">Tải về</h2>
+    <div class="seg" id="plat-tabs" role="group" aria-label="Chọn nền tảng">
+      <button type="button" data-plat="all" aria-pressed="true">Tất cả</button>
+      <button type="button" data-plat="Windows" aria-pressed="false">Windows</button>
+      <button type="button" data-plat="Linux" aria-pressed="false">Linux</button>
+      <button type="button" data-plat="Android" aria-pressed="false">Android</button>
+    </div>
+    <div class="grid" id="releases" aria-live="polite"><p class="muted">Đang tải bản phát hành…</p></div>
+
+    <h2 class="section-title">V1 hay V2?</h2>
+    <div class="grid">
+      <div class="card"><h3>Emulator V1 + Remoter</h3><p class="muted">Mỗi game một cửa sổ riêng, cách ly tốt, điều khiển tập trung bằng Remoter. Tốn RAM hơn.</p></div>
+      <div class="card"><h3>Emulator V2</h3><p class="muted">Nhiều tab trong một cửa sổ, một tiến trình, nhẹ hơn. Lỗi nặng ở tầng Java có thể ảnh hưởng cả cửa sổ.</p></div>
+    </div>
+
+    <h2 class="section-title">Tính năng</h2>
+    <div class="grid">
+      <div class="card"><h3>🗂️ Nhiều tab</h3><p class="muted">Mỗi tab có thiết bị, dữ liệu lưu game và proxy riêng.</p></div>
+      <div class="card"><h3>🌐 Proxy theo tab</h3><p class="muted">HTTP và SOCKS5; gán riêng hoặc chia vòng từ kho proxy.</p></div>
+      <div class="card"><h3>🔁 Đồng bộ thao tác</h3><p class="muted">Phím và chuột ở một tab được nhân ra các tab đã chọn.</p></div>
+      <div class="card"><h3>🧹 Dọn RAM</h3><p class="muted">Dọn ngay hoặc tự dọn theo ngưỡng HEAP.</p></div>
+    </div>
+
+    <h2 class="section-title">Kiểm tra file tải về</h2>
+    <p class="page-sub">Mỗi bản phát hành có <code>SHA256SUMS.txt</code>, tính sau cùng trên đúng các file đăng.</p>
+    <pre class="code"><span class="c"># Linux</span>
+sha256sum -c SHA256SUMS.txt
+<span class="c"># Windows (PowerShell)</span>
+Get-FileHash .\&lt;tên-file&gt; -Algorithm SHA256</pre>
+    <p class="page-sub">Cần giúp hoặc muốn báo lỗi? Vào <a href="support.html" style="color:var(--accent);font-weight:700">Hỗ trợ</a>.</p>
+  </main>
+  <script type="module" src="../assets/js/components/shell.js"></script>
+  <script type="module" src="../assets/js/pages/che779.js"></script>
+</body>
+</html>

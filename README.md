@@ -6,11 +6,12 @@ Trang cá nhân của **Kidtomboy (Cherry)** — giới thiệu, dự án **Che7
 
 ```
 index.html              Trang chủ (home.html chuyển về đây)
-pages/                  Dự án, Game, Nhạc, Việc cần làm, Tìm kiếm, Hỗ trợ, Giới thiệu
+404.html  sitemap.xml  robots.txt
+pages/                  Che779 (bản phát hành lấy từ GitHub), Dự án, Game, Terminal, Nhạc, Việc, Tìm kiếm, Hỗ trợ, Giới thiệu
 games/                  19 game, mỗi game một trang
 assets/css/site.css     Toàn bộ giao diện "Cherry" (sáng/tối), một file duy nhất
 assets/js/core/         theme.js (sáng/tối), storage, audio, devMode…
-assets/js/components/   shell.js (header, menu di động, footer, đăng ký service worker)
+assets/js/components/   shell.js (header, footer, service worker), palette.js (Ctrl+K), matrix.js (nền trang chủ)
 assets/js/pages/        Logic từng trang
 assets/js/games/        Logic game (lớp cơ sở + từng game)
 sw.js  manifest.json    PWA (mạng trước, lỗi mạng dùng bản lưu)
@@ -23,6 +24,15 @@ python3 -m http.server 8000   # rồi mở http://localhost:8000
 ```
 
 Cần chạy qua máy chủ (không mở thẳng file) vì dùng ES module và service worker.
+
+## Tính năng nổi bật
+
+- **Che779**: trang tải bản phát hành mới nhất của 4 repo, lấy trực tiếp từ GitHub API (có nhớ tạm 10 phút, timeout 8 giây), tự gợi ý theo thiết bị.
+- **Terminal** tương tác (`help`, `che779`, `projects`, `neofetch`, `open`, `theme`…), Tab gợi ý, ↑/↓ lịch sử.
+- **Command palette**: `Ctrl/⌘ + K` hoặc `/` để nhảy tới trang, game, repo.
+- Nền mưa ký tự ở trang chủ (tự tắt khi bật "giảm chuyển động" hoặc ẩn tab).
+- SEO/PWA: sitemap, robots, Open Graph, JSON-LD, trang 404, hoạt động offline cơ bản.
+- `assets/js/core/site-data.js` là danh sách trang/game/repo dùng chung; thêm game mới thì cập nhật file này.
 
 ## Ghi chú
 
