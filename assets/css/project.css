@@ -67,3 +67,8 @@
   border-radius: 20px;
   font-size: 0.8rem;
 }
+/* Che779 nổi bật */
+.che779-featured { margin-bottom: 2rem; }
+.che779-featured h2, .all-projects-title { margin: 0 0 .5rem; }
+.che779-featured p { margin: 0 0 1rem; }
+.all-projects-title { margin-top: 1rem; }
