@@ -84,19 +84,19 @@
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <div class="game-wrapper">
+  <div class="game-wrapper" role="main">
     <h1>🎯 Tic Tac Toe</h1>
     <div class="settings">
-      <select id="modeSelect">
+      <select id="modeSelect" aria-label="Chế độ chơi">
         <option value="pvp">2 Người</option>
         <option value="ai" selected>Đấu Máy</option>
       </select>
-      <select id="difficultySelect">
+      <select id="difficultySelect" aria-label="Độ khó">
         <option value="easy">Dễ</option>
         <option value="medium" selected>Trung bình</option>
         <option value="hard">Khó</option>
       </select>
-      <select id="sizeSelect">
+      <select id="sizeSelect" aria-label="Kích thước bàn">
         <option value="3" selected>3x3</option>
         <option value="4">4x4</option>
         <option value="5">5x5</option>

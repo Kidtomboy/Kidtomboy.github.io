@@ -96,6 +96,7 @@
       display: flex;
       gap: 1rem;
     }
+      @media (max-width: 480px) { #boardContainer { zoom: 0.58; } }
   </style>
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,10 +106,10 @@
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <div class="game-wrapper">
+  <div class="game-wrapper" role="main">
     <h1>💣 Minesweeper</h1>
     <div class="settings">
-      <select id="difficultySelect">
+      <select id="difficultySelect" aria-label="Độ khó">
         <option value="easy">Dễ (9x9, 10 mìn)</option>
         <option value="medium" selected>Trung bình (16x16, 40 mìn)</option>
         <option value="hard">Khó (30x16, 99 mìn)</option>

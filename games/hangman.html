@@ -45,6 +45,7 @@
     .controls {
       margin-top: 1rem; display: flex; gap: 1rem;
     }
+      @media (max-width: 480px) { .keyboard-row { flex-wrap: wrap; } .key { width: 32px; height: 38px; } }
   </style>
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,7 +55,7 @@
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <div class="game-wrapper">
+  <div class="game-wrapper" role="main">
     <h1>📝 Hangman</h1>
     <div class="game-ui">
       <span>Lượt sai còn lại: <span id="lives">6</span></span>

@@ -20,39 +20,16 @@
   <main class="game-hub">
     <h1 class="page-title">🎮 Bộ sưu tập game</h1>
     <p class="page-sub">Chơi ngay trên trình duyệt, điểm cao nhất được lưu trên máy bạn.</p>
-    <div class="controls-row"><input type="search" id="game-filter" placeholder="Lọc game…" aria-label="Lọc game"><span class="muted" id="game-count"></span></div>
+    <div class="controls-row">
+      <input type="search" id="game-filter" placeholder="Lọc game…" aria-label="Lọc game">
+      <label class="muted">Sắp xếp <select id="game-sort" aria-label="Sắp xếp game">
+        <option value="cat">Theo nhóm</option><option value="custom">Tự sắp xếp</option><option value="az">A → Z</option><option value="plays">Chơi nhiều nhất</option><option value="recent">Chơi gần nhất</option><option value="fav">Yêu thích trước</option></select></label>
+      <button class="btn ghost" id="game-reset" type="button" hidden>↺ Đặt lại thứ tự</button>
+      <button class="btn ghost" id="game-rand" type="button">🎲 Ngẫu nhiên</button>
+      <span class="muted" id="game-count"></span>
+    </div>
     <div id="personal"></div>
-    <div class="category"><h2>Arcade</h2><div class="game-grid">
-      <a href="../games/snake.html" class="game-card">🐍 Snake</a>
-      <a href="../games/tetris.html" class="game-card">🧱 Tetris</a>
-      <a href="../games/flappy-bird.html" class="game-card">🐦 Flappy Bird</a>
-      <a href="../games/breakout.html" class="game-card">🧱 Breakout</a>
-      <a href="../games/dino-runner.html" class="game-card">🦖 Dino Runner</a>
-    </div></div>
-    <div class="category"><h2>Puzzle</h2><div class="game-grid">
-      <a href="../games/2048.html" class="game-card">🔢 2048</a>
-      <a href="../games/minesweeper.html" class="game-card">💣 Minesweeper</a>
-      <a href="../games/memory-match.html" class="game-card">🧠 Memory Match</a>
-      <a href="../games/sudoku.html" class="game-card">🧩 Sudoku</a>
-    </div></div>
-    <div class="category"><h2>Bàn cờ</h2><div class="game-grid">
-      <a href="../games/chess.html" class="game-card">♟ Chess</a>
-      <a href="../games/checkers.html" class="game-card">⚫ Checkers</a>
-      <a href="../games/connect-four.html" class="game-card">🔴 Connect Four</a>
-      <a href="../games/tic-tac-toe.html" class="game-card">🎯 Tic Tac Toe</a>
-    </div></div>
-    <div class="category"><h2>Bài</h2><div class="game-grid">
-      <a href="../games/solitaire.html" class="game-card">🃏 Solitaire</a>
-      <a href="../games/freecell.html" class="game-card">🃏 FreeCell</a>
-    </div></div>
-    <div class="category"><h2>Chữ & học</h2><div class="game-grid">
-      <a href="../games/hangman.html" class="game-card">📝 Hangman</a>
-      <a href="../games/math-quiz.html" class="game-card">📐 Math Quiz</a>
-    </div></div>
-    <div class="category"><h2>Thể thao</h2><div class="game-grid">
-      <a href="../games/pool.html" class="game-card">🎱 Pool</a>
-      <a href="../games/archery.html" class="game-card">🏹 Archery</a>
-    </div></div>
+    <div id="game-list"></div>
   </main>
   <script type="module" src="../assets/js/components/shell.js"></script>
   <script type="module" src="../assets/js/pages/game-hub.js"></script>

@@ -347,3 +347,9 @@ details.notes .md{margin-top:.5rem;font-size:.9rem;max-height:260px;overflow:aut
 .arch .card h3{margin:.2rem 0 .4rem;font-size:1rem}.arch .arrow{align-self:center;text-align:center;color:var(--accent);font-family:var(--font-mono)}
 .card textarea,.card input[type=file]{max-width:100%;width:100%}
 pre.code{overflow-x:auto;max-width:100%}
+
+.mv{position:absolute;left:.4rem;top:.4rem;display:flex;gap:.2rem}.mv button{font-size:.7rem;padding:.15rem .4rem;border:1px solid var(--card-border);border-radius:var(--radius-sm);color:var(--text-secondary)}.mv button:hover{border-color:var(--accent);color:var(--accent)}
+.game-card[draggable=true]{cursor:grab}
+.yt-wrap{aspect-ratio:16/9;width:100%;max-width:100%;border-radius:var(--radius-md);overflow:hidden;background:#000;margin-bottom:.8rem}.yt-wrap iframe{width:100%;height:100%;border:0}
+.add-row{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0}.add-row input{flex:1;min-width:0}
+.pl-x{float:right;opacity:.6}.pl-x:hover{opacity:1;color:#ff6b6b}

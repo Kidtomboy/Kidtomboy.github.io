@@ -16,7 +16,7 @@ let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
 // DOM elements
 const engineButtons = document.querySelectorAll('.search-engine-selector button');
 const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-btn');
+const searchBtn = document.getElementById('page-search-btn');
 const bookmarksContainer = document.getElementById('bookmarks-container');
 
 // Khởi tạo

@@ -62,17 +62,17 @@
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <div class="game-wrapper">
+  <div class="game-wrapper" role="main">
     <h1>📐 Math Quiz</h1>
     <div class="settings">
-      <select id="operationSelect">
+      <select id="operationSelect" aria-label="Phép tính">
         <option value="all">Tất cả</option>
         <option value="add">Cộng</option>
         <option value="sub">Trừ</option>
         <option value="mul">Nhân</option>
         <option value="div">Chia</option>
       </select>
-      <select id="difficultySelect">
+      <select id="difficultySelect" aria-label="Độ khó">
         <option value="easy">Dễ (1-20)</option>
         <option value="medium" selected>Trung bình (1-100)</option>
         <option value="hard">Khó (1-1000)</option>
@@ -86,7 +86,7 @@
     <div class="quiz-card">
       <div class="timer" id="timer">⏱️ 15s</div>
       <div class="question" id="question">5 + 3 = ?</div>
-      <input type="number" class="answer-input" id="answerInput" autofocus>
+      <input type="number" class="answer-input" id="answerInput" autofocus aria-label="Đáp án">
       <p style="margin-top:0.5rem;">Nhấn Enter để trả lời</p>
     </div>
     <div class="controls">

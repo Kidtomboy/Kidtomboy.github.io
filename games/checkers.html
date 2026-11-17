@@ -82,6 +82,7 @@
       display: flex;
       gap: 1rem;
     }
+      @media (max-width: 480px) { .board { zoom: 0.68; } }
   </style>
   <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,14 +92,14 @@
   <script type="module" src="../assets/js/core/theme.js"></script>
 </head>
 <body>
-  <div class="game-wrapper">
+  <div class="game-wrapper" role="main">
     <h1>⚫ Checkers</h1>
     <div class="settings">
-      <select id="modeSelect">
+      <select id="modeSelect" aria-label="Chế độ chơi">
         <option value="pvp">2 Người</option>
         <option value="ai" selected>Đấu Máy</option>
       </select>
-      <select id="difficultySelect">
+      <select id="difficultySelect" aria-label="Độ khó">
         <option value="easy">Dễ</option>
         <option value="medium" selected>Trung bình</option>
         <option value="hard">Khó</option>

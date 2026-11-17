@@ -19,18 +19,21 @@
 <body>
   <main class="music-container">
     <h1 class="page-title">🎵 Nhạc</h1>
-    <p class="page-sub">Thêm file nhạc từ máy hoặc dán đường dẫn URL.</p>
+    <p class="page-sub">Nghe file từ máy, link audio trực tiếp, hoặc dán link YouTube (video hoặc playlist). Danh sách bài từ URL và YouTube được nhớ trên máy bạn.</p>
     <div class="music-layout">
       <aside class="playlist-panel">
         <h2>📋 Playlist</h2>
         <div class="playlist-controls">
           <button id="addLocalBtn">📁 Thêm nhạc</button>
           <button id="addUrlBtn">🔗 Thêm URL</button>
-          <input type="file" id="fileInput" accept="audio/*" multiple hidden>
+          <button id="addYtBtn">▶ YouTube</button>
+          <input type="file" id="fileInput" accept="audio/*" multiple hidden aria-label="Chọn file nhạc">
         </div>
+        <form class="add-row" id="addRow" hidden><input type="text" id="addInput" aria-label="Đường dẫn" autocomplete="off"><button class="btn" type="submit">Thêm</button></form>
         <ul class="playlist" id="playlist"></ul>
       </aside>
       <section class="player-panel">
+        <div class="yt-wrap" id="ytWrap" hidden><div id="ytPlayer"></div></div>
         <div class="album-art" id="albumArt"><div class="art-placeholder">🎵</div></div>
         <div class="track-info"><h2 id="trackTitle">Chưa chọn bài</h2><p id="trackArtist">Nghệ sĩ</p></div>
         <div class="progress-bar"><span id="currentTime">0:00</span><input type="range" id="seekBar" value="0" min="0" max="100" aria-label="Tua"><span id="duration">0:00</span></div>
