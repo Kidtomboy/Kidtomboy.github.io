@@ -54,6 +54,32 @@ const TOOLS = [
     init() { const run = () => { const t = $('#x-in').value; const w = (t.trim().match(/\S+/g) || []).length;
       $('#x-out').innerHTML = [[t.length, 'ký tự'], [t.replace(/\s/g, '').length, 'không tính khoảng trắng'], [w, 'từ'], [t ? t.split(/\n/).length : 0, 'dòng'], [Math.max(0, Math.ceil(w / 200)), 'phút đọc']].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join(''); };
       $('#x-in').oninput = run; run(); } },
+  { id: 'slug', name: 'Bỏ dấu / Slug', html: () => `${ta('s-in', 'Nhập tiếng Việt có dấu, ví dụ: Giả lập J2ME trên Linux', 3)}<p class="muted">Bỏ dấu tiếng Việt và tạo slug dùng cho tên file, URL.</p>${out('s-out')}`,
+    init() { const run = () => { const t = $('#s-in').value; const nd = t.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
+      $('#s-out').textContent = `Không dấu: ${nd}\nSlug:      ${nd.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`; };
+      $('#s-in').oninput = run; run(); } },
+  { id: 'case', name: 'Đổi kiểu chữ', html: () => `${ta('k-in', 'Nhập văn bản, ví dụ: emulator remote control', 3)}${out('k-out')}`,
+    init() { const run = () => { const t = $('#k-in').value.trim(); const w = t.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      const cap = x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase();
+      $('#k-out').textContent = t ? `UPPER   ${t.toUpperCase()}\nlower   ${t.toLowerCase()}\nTitle   ${w.map(cap).join(' ')}\ncamel   ${w.map((x, i) => i ? cap(x) : x.toLowerCase()).join('')}\nPascal  ${w.map(cap).join('')}\nsnake   ${w.map(x => x.toLowerCase()).join('_')}\nkebab   ${w.map(x => x.toLowerCase()).join('-')}` : ''; };
+      $('#k-in').oninput = run; run(); } },
+  { id: 'size', name: 'Dung lượng', html: () => `<div class="controls-row"><input type="number" id="z-n" value="25" min="0" step="any" style="width:140px"><select id="z-u"><option>B</option><option>KB</option><option selected>MB</option><option>GB</option><option>TB</option></select></div><p class="muted">Hiển thị cả bội số 1024 (KiB, MiB…) và 1000 (KB, MB…).</p>${out('z-out')}`,
+    init() { const U = ['B', 'KB', 'MB', 'GB', 'TB']; const f = v => v >= 100 ? v.toFixed(0) : v >= 1 ? v.toFixed(2) : v.toPrecision(3);
+      const run = () => { const n = +$('#z-n').value || 0, i = U.indexOf($('#z-u').value); const b = n * Math.pow(1024, i), d = n * Math.pow(1000, i);
+        $('#z-out').textContent = `Theo 1024:\n` + U.map((u, k) => `  ${f(b / Math.pow(1024, k)).padStart(12)} ${u === 'B' ? 'B  ' : u.replace('B', 'iB')}`).join('\n') + `\n\nTheo 1000:\n` + U.map((u, k) => `  ${f(d / Math.pow(1000, k)).padStart(12)} ${u}`).join('\n'); };
+      $('#z-n').oninput = run; $('#z-u').onchange = run; run(); } },
+  { id: 'diff', name: 'So sánh văn bản', html: () => `<div class="two"><div>${ta('d-a', 'Bản cũ', 8)}</div><div>${ta('d-b', 'Bản mới', 8)}</div></div><div class="controls-row"><button class="btn" id="d-go">So sánh</button></div><pre class="code" id="d-out"></pre>`,
+    init() { const o = $('#d-out');
+      $('#d-go').onclick = () => { const a = $('#d-a').value.split('\n'), b = $('#d-b').value.split('\n');
+        if (a.length > 1500 || b.length > 1500) { o.textContent = 'Quá dài (tối đa 1500 dòng mỗi bên).'; return; }
+        const m = a.length, n = b.length, L = Array.from({ length: m + 1 }, () => new Uint16Array(n + 1));
+        for (let i = m - 1; i >= 0; i--) for (let j = n - 1; j >= 0; j--) L[i][j] = a[i] === b[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+        let i = 0, j = 0, h = '', add = 0, del = 0;
+        while (i < m || j < n) {
+          if (i < m && j < n && a[i] === b[j]) { h += `<span class="df-s">  ${esc(a[i])}</span>\n`; i++; j++; }
+          else if (j < n && (i === m || L[i][j + 1] >= L[i + 1][j])) { h += `<span class="df-a">+ ${esc(b[j])}</span>\n`; j++; add++; }
+          else { h += `<span class="df-d">- ${esc(a[i])}</span>\n`; i++; del++; } }
+        o.innerHTML = `<b>+${add} / −${del}</b>\n` + h; }; } },
   { id: 'pomo', name: 'Pomodoro', html: () => `<div class="pomo"><div class="pomo-time" id="pm-t">25:00</div><p class="muted" id="pm-s">Tập trung 25 phút, nghỉ 5 phút.</p><div class="controls-row" style="justify-content:center"><button class="btn" id="pm-go">Bắt đầu</button><button class="btn ghost" id="pm-rs">Đặt lại</button><button class="btn ghost" id="pm-mode">Chế độ: Làm việc</button></div></div>`,
     init() { let work = true, left = 1500, timer = 0;
       const fmt = s => String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
@@ -75,3 +101,4 @@ function open(id) {
 tabs.innerHTML = TOOLS.map(t => `<button type="button" data-id="${t.id}" aria-pressed="false">${t.name}</button>`).join('');
 tabs.addEventListener('click', e => { const b = e.target.closest('button'); if (b) open(b.dataset.id); });
 open(location.hash.slice(1));
+addEventListener('hashchange', () => open(location.hash.slice(1)));

@@ -45,3 +45,14 @@ Cần chạy qua máy chủ (không mở thẳng file) vì dùng ES module và s
 - Dữ liệu (việc cần làm, điểm cao, playlist) lưu trong trình duyệt của người dùng, không gửi đi đâu.
 - Trang **Dự án** lấy repo công khai từ GitHub API (có thể bị giới hạn lượt gọi; khi đó hiện liên kết sang GitHub).
 - `config/secrets.js` chứa mật khẩu chế độ nhà phát triển **nằm ngay trong mã phía trình duyệt**, ai cũng đọc được: chỉ dùng cho tính năng thử nghiệm của game, không bảo vệ dữ liệu nào.
+
+## Sơ đồ trang (v4)
+
+```
+Kidtomboy.github.io
+├─ Che779: che779 · ecosystem · timeline · verify · status
+├─ Dự án & viết: project · blog · notes
+├─ Giải trí: game (19) · music
+├─ Tiện ích: tools (14) · todo · terminal · search
+└─ Về mình: about · links · support · sitemap
+```

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var d=document.documentElement;d.setAttribute('data-theme',localStorage.getItem('theme')||'dark');d.setAttribute('data-accent',localStorage.getItem('accent')||'green');if(localStorage.getItem('fx')==='off')d.setAttribute('data-fx','off');var f=localStorage.getItem('fsize');if(f)d.style.fontSize=f+'%'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Che779 gồm 4 repo: Windows V1, Windows V2, Linux và Android, và cách chúng liên kết với nhau.">
+  <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Hệ sinh thái Che779 · Kidtomboy"><meta property="og:description" content="Che779 gồm 4 repo: Windows V1, Windows V2, Linux và Android, và cách chúng liên kết với nhau."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <title>Hệ sinh thái Che779 · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&subset=vietnamese&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1 class="page-title">Hệ sinh thái Che779</h1>
+    <p class="page-sub">Che779 là bộ giả lập J2ME gồm 4 repo. Hai repo Windows là gốc, hai repo còn lại đóng gói lại cho Linux và Android.</p>
+    <div class="arch">
+      <a class="card lift" href="https://github.com/Kidtomboy/Che779-Emulator"><span class="badge">Windows</span><h3>Che779-Emulator</h3><p class="muted">Emulator V1 + Remoter. Mỗi game một cửa sổ, điều khiển tập trung.</p></a>
+      <a class="card lift" href="https://github.com/Kidtomboy/Che779-EmulatorV2"><span class="badge">Windows</span><h3>Che779-EmulatorV2</h3><p class="muted">Emulator V2. Nhiều tab trong một cửa sổ.</p></a>
+    </div>
+    <p class="muted" style="text-align:center">▼ hai repo Windows là nguồn, hai repo dưới đây ghim (pin) phiên bản của chúng thay vì sao chép mã</p>
+    <div class="arch">
+      <a class="card lift" href="https://github.com/Kidtomboy/Che779-Linux"><span class="badge">Linux</span><h3>Che779-Linux</h3><p class="muted">Gói .deb / .tar.gz: V2 + V1 + Remoter Linux.</p></a>
+      <a class="card lift" href="https://github.com/Kidtomboy/Che779-Android"><span class="badge">Android</span><h3>Che779-Android</h3><p class="muted">APK, APK clone và script Termux chạy V2.</p></a>
+    </div>
+    <h2 class="section-title">Quy ước chung</h2>
+    <ul class="list">
+      <li>Phát hành bằng tag dạng <code>v*</code>. Có thể chạy thử quy trình ở chế độ dry-run (workflow_dispatch) mà không tạo release thật.</li>
+      <li>Mỗi release có <code>SHA256SUMS.txt</code> là file cuối cùng. Dùng trang <a href="verify.html">Kiểm tra SHA-256</a> để đối chiếu.</li>
+      <li>Linux và Android ghim phiên bản của repo Windows qua <code>EMULATOR_V1_REF</code> / <code>EMULATOR_V2_REF</code>, không sao chép mã.</li>
+      <li>Quyết định thiết kế được ghi trong <code>docs/DECISIONS.md</code> của từng repo.</li>
+    </ul>
+    <p><a class="btn" href="che779.html">Tải bản phát hành</a> <a class="btn ghost" href="timeline.html">Xem hành trình</a> <a class="btn ghost" href="status.html">Trạng thái</a></p>
+  </main>
+  <script type="module" src="../assets/js/components/shell.js"></script>
+</body>
+</html>

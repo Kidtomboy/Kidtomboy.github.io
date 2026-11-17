@@ -8,7 +8,7 @@ const NAV = [
   ['index.html', 'Trang chủ'], ['pages/che779.html', 'Che779'], ['pages/project.html', 'Dự án'], ['pages/game.html', 'Game'], ['pages/about.html', 'Giới thiệu']
 ];
 const MORE = [
-  ['pages/tools.html', 'Công cụ'], ['pages/links.html', 'Liên kết'], ['pages/notes.html', 'Ghi chú'], ['pages/terminal.html', 'Terminal'], ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ']
+  ['pages/timeline.html', 'Hành trình'], ['pages/verify.html', 'Kiểm tra SHA-256'], ['pages/ecosystem.html', 'Hệ sinh thái'], ['pages/status.html', 'Trạng thái'], ['pages/blog.html', 'Blog'], ['pages/tools.html', 'Công cụ'], ['pages/links.html', 'Liên kết'], ['pages/notes.html', 'Ghi chú'], ['pages/terminal.html', 'Terminal'], ['pages/music.html', 'Nhạc'], ['pages/todo.html', 'Việc cần làm'], ['pages/search.html', 'Tìm kiếm'], ['pages/support.html', 'Hỗ trợ'], ['pages/sitemap.html', 'Sơ đồ trang']
 ];
 
 function isCurrent(href) {

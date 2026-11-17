@@ -105,6 +105,36 @@ export const SITE = {
    "tools base64 hash sha256 json regex password uuid pomodoro timestamp color"
   ],
   [
+   "pages/ecosystem.html",
+   "Hệ sinh thái Che779",
+   "che779 repo windows linux android kiến trúc"
+  ],
+  [
+   "pages/timeline.html",
+   "Hành trình (các bản phát hành)",
+   "timeline release changelog hành trình phiên bản"
+  ],
+  [
+   "pages/verify.html",
+   "Kiểm tra SHA-256",
+   "sha256 checksum verify kiểm tra file tải"
+  ],
+  [
+   "pages/status.html",
+   "Trạng thái (đã / chưa kiểm tra)",
+   "status trạng thái tested chưa thử"
+  ],
+  [
+   "pages/blog.html",
+   "Blog",
+   "blog bài viết"
+  ],
+  [
+   "pages/sitemap.html",
+   "Sơ đồ trang",
+   "sitemap sơ đồ cây"
+  ],
+  [
    "pages/links.html",
    "Liên kết (mạng xã hội)",
    "links social facebook telegram discord github liên hệ"

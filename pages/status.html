@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var d=document.documentElement;d.setAttribute('data-theme',localStorage.getItem('theme')||'dark');d.setAttribute('data-accent',localStorage.getItem('accent')||'green');if(localStorage.getItem('fx')==='off')d.setAttribute('data-fx','off');var f=localStorage.getItem('fsize');if(f)d.style.fontSize=f+'%'}catch(e){document.documentElement.setAttribute('data-theme','dark')}})()</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Điều gì đã được kiểm tra, điều gì chưa, nói thẳng để bạn khỏi phải đoán.">
+  <meta name="theme-color" content="#05080a">
+  <meta property="og:title" content="Trạng thái · Kidtomboy"><meta property="og:description" content="Điều gì đã được kiểm tra, điều gì chưa, nói thẳng để bạn khỏi phải đoán."><meta property="og:type" content="website"><meta property="og:image" content="https://kidtomboy.github.io/assets/og.svg">
+  <title>Trạng thái · Kidtomboy</title>
+  <link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800&subset=vietnamese&display=swap">
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <script type="module" src="../assets/js/core/theme.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1 class="page-title">Trạng thái</h1>
+    <p class="page-sub">Nói thẳng điều gì đã kiểm tra và điều gì chưa. Cập nhật theo bản v1.3.0, ngày 17/11/2026.</p>
+    <h2 class="section-title">Che779</h2>
+    <div class="status-grid">
+      <div class="card"><span class="pill ok">ĐÃ CHẠY</span><span>Cả 4 repo: CI xanh, chạy thử quy trình phát hành (dry-run) xanh, tag v1.3.0 có SHA256SUMS.txt.</span></div>
+      <div class="card"><span class="pill ok">ĐÃ CHẠY</span><span>Script Termux: đã thử trong môi trường giả lập Termux (CHE_FORCE_OS=termux).</span></div>
+      <div class="card"><span class="pill warn">CHƯA THỬ</span><span>Gói .deb trên Debian / Linux Mint thật, và các bản phân phối Linux khác.</span></div>
+      <div class="card"><span class="pill warn">CHƯA THỬ</span><span>Termux V2 trên điện thoại thật.</span></div>
+      <div class="card"><span class="pill todo">THIẾU</span><span>Remoter bản Linux còn thiếu một số chức năng so với Windows (Xem lưới, Macro).</span></div>
+    </div>
+    <h2 class="section-title" style="margin-top:1.6rem">Trang web này</h2>
+    <div class="status-grid">
+      <div class="card"><span class="pill ok">ĐÃ CHẠY</span><span>Đã mở thử 21 trang ở độ rộng 1280px và 390px bằng trình duyệt tự động: không lỗi JavaScript, không tràn ngang.</span></div>
+      <div class="card"><span class="pill ok">ĐÃ CHẠY</span><span>Các công cụ chạy đúng với dữ liệu mẫu, ví dụ SHA-256 của "abc".</span></div>
+      <div class="card"><span class="pill warn">CHƯA THỬ</span><span>Phát nhạc, danh sách việc cần làm trên nhiều thiết bị, và hiển thị chữ tiếng Việt của Google Fonts trên mọi máy.</span></div>
+    </div>
+    <p class="muted" style="margin-top:1rem">Gặp lỗi? Mở Issue trên repo tương ứng, hoặc xem trang <a href="support.html">Hỗ trợ</a>.</p>
+  </main>
+  <script type="module" src="../assets/js/components/shell.js"></script>
+</body>
+</html>

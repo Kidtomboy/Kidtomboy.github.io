@@ -1,5 +1,5 @@
 // Service worker: lưu đệm khung site, mạng trước – lỗi mạng thì dùng bản lưu.
-const CACHE = 'kidtomboy-v3';
+const CACHE = 'kidtomboy-v4';
 const SHELL = ['index.html', 'assets/css/site.css', 'assets/icon.svg', 'assets/js/core/theme.js', 'assets/js/components/shell.js', 'assets/js/components/palette.js', 'assets/js/core/site-data.js', '404.html'];
 
 self.addEventListener('install', e => {
